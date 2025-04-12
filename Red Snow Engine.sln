@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Red Snow Engine", "Engine\Red Snow Engine\Red Snow Engine.vcxproj", "{142207D9-A800-446D-9A61-49E6DDE4D1A3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{B0304806-F3E6-4FEE-80CD-BB87D3F78159}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "Framework\Core\Core.vcxproj", "{5841B74A-7AAF-4A18-99C0-A9C81741AF26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VGP242", "VGP242", "{CD6A92BA-0E2A-4298-B391-69BEEEAB2A3D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01_HelloWindow", "VGP242\01_HelloWindow\01_HelloWindow.vcxproj", "{AB7CBA45-BF8C-4355-8AD0-1E6890864114}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Red Snow Engine", "Engine\RedSnowEngine\Red Snow Engine.vcxproj", "{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,20 +23,38 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Debug|x64.ActiveCfg = Debug|x64
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Debug|x64.Build.0 = Debug|x64
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Debug|x86.ActiveCfg = Debug|Win32
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Debug|x86.Build.0 = Debug|Win32
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Release|x64.ActiveCfg = Release|x64
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Release|x64.Build.0 = Release|x64
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Release|x86.ActiveCfg = Release|Win32
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3}.Release|x86.Build.0 = Release|Win32
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Debug|x64.ActiveCfg = Debug|x64
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Debug|x64.Build.0 = Debug|x64
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Debug|x86.ActiveCfg = Debug|Win32
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Debug|x86.Build.0 = Debug|Win32
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Release|x64.ActiveCfg = Release|x64
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Release|x64.Build.0 = Release|x64
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Release|x86.ActiveCfg = Release|Win32
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26}.Release|x86.Build.0 = Release|Win32
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Debug|x64.ActiveCfg = Debug|x64
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Debug|x64.Build.0 = Debug|x64
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Debug|x86.ActiveCfg = Debug|Win32
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Debug|x86.Build.0 = Debug|Win32
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Release|x64.ActiveCfg = Release|x64
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Release|x64.Build.0 = Release|x64
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Release|x86.ActiveCfg = Release|Win32
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114}.Release|x86.Build.0 = Release|Win32
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Debug|x64.ActiveCfg = Debug|x64
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Debug|x64.Build.0 = Debug|x64
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Debug|x86.ActiveCfg = Debug|Win32
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Debug|x86.Build.0 = Debug|Win32
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Release|x64.ActiveCfg = Release|x64
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Release|x64.Build.0 = Release|x64
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Release|x86.ActiveCfg = Release|Win32
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{142207D9-A800-446D-9A61-49E6DDE4D1A3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{5841B74A-7AAF-4A18-99C0-A9C81741AF26} = {B0304806-F3E6-4FEE-80CD-BB87D3F78159}
+		{AB7CBA45-BF8C-4355-8AD0-1E6890864114} = {CD6A92BA-0E2A-4298-B391-69BEEEAB2A3D}
+		{4F613025-A2F3-4F96-B111-E20BB6EFD8DB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9089204D-AA28-47FB-9079-944487F4788C}
