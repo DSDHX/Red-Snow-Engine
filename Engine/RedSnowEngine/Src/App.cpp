@@ -23,29 +23,36 @@ void App::Run(const AppConfig& config)
     while (mRunning)
     {
         LOG("Running");
+
+        myWindow.ProcessMessages();
+
         if (!myWindow.IsActive())
         {
             Quit();
             continue;
         }
+    }
 
-        if (mNextState != nullptr)
-        {
-            mCurrentState->Terminate();
-            mCurrentState = std::exchange(mNextState, nullptr);
-            mCurrentState->Initialize();
-        }
+    if (mNextState != nullptr)
+    {
+        mCurrentState->Terminate();
+        mCurrentState = std::exchange(mNextState, nullptr);
+        mCurrentState->Initialize();
+    }
 
-        float deltaTime = TimeUtil::GetDeltaTime();
+    float deltaTime = TimeUtil::GetDeltaTime();
 #if defined(_DEBUG)
-        if (deltaTime < 0.5f)
+    if (deltaTime < 0.5f)
 #endif
-        {
-            mCurrentState->Update(deltaTime);
-        }
+    {
+        mCurrentState->Update(deltaTime);
     }
 
     LOG("App Quit");
+
+    mCurrentState->Terminate();
+
+    myWindow.Terminate();
 }
 
 void App::Quit()

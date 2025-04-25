@@ -26,7 +26,7 @@ void Window::Initialize(HINSTANCE instance, const std::wstring& appName, uint32_
     mAppName = appName;
 
     WNDCLASSEX wcex;
-    wcex.style = sizeof(WNDCLASSEX);
+    wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = WindowMessageHandler;
     wcex.cbClsExtra = 0;
@@ -79,7 +79,7 @@ void Window::Terminate()
 
 void Window::ProcessMessages()
 {
-    MSG msg;
+    MSG msg{};
     while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
     {
         TranslateMessage(&msg);
