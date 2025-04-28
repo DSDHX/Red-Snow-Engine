@@ -4,6 +4,7 @@
 
 using namespace RedSnowEngine;
 using namespace RedSnowEngine::Core;
+using namespace RedSnowEngine::Graphics;
 
 void App::Run(const AppConfig& config)
 {
@@ -15,6 +16,8 @@ void App::Run(const AppConfig& config)
         config.appName,
         config.winWidth, 
         config.winHeight);
+    auto handle = myWindow.GetWindowHandle();
+    GraphicsSystem::StaticInitialize(handle, false);
 
     ASSERT(mCurrentState != nullptr, "App: need an app state to run");
     mCurrentState->Initialize();
@@ -31,27 +34,32 @@ void App::Run(const AppConfig& config)
             Quit();
             continue;
         }
-    }
 
-    if (mNextState != nullptr)
-    {
-        mCurrentState->Terminate();
-        mCurrentState = std::exchange(mNextState, nullptr);
-        mCurrentState->Initialize();
-    }
+        if (mNextState != nullptr)
+        {
+            mCurrentState->Terminate();
+            mCurrentState = std::exchange(mNextState, nullptr);
+            mCurrentState->Initialize();
+        }
 
-    float deltaTime = TimeUtil::GetDeltaTime();
+        float deltaTime = TimeUtil::GetDeltaTime();
 #if defined(_DEBUG)
-    if (deltaTime < 0.5f)
+        if (deltaTime < 0.5f)
 #endif
-    {
-        mCurrentState->Update(deltaTime);
+        {
+            mCurrentState->Update(deltaTime);
+        }
+
+        GraphicsSystem* gs = GraphicsSystem::Get();
+        gs->BeginRender();
+        mCurrentState->Render();
+        gs->EndRender();
     }
 
     LOG("App Quit");
-
     mCurrentState->Terminate();
 
+    GraphicsSystem::StaticTerminate();
     myWindow.Terminate();
 }
 
