@@ -5,6 +5,7 @@
 using namespace RedSnowEngine;
 using namespace RedSnowEngine::Core;
 using namespace RedSnowEngine::Graphics;
+using namespace RedSnowEngine::Input;
 
 void App::Run(const AppConfig& config)
 {
@@ -18,18 +19,19 @@ void App::Run(const AppConfig& config)
         config.winHeight);
     auto handle = myWindow.GetWindowHandle();
     GraphicsSystem::StaticInitialize(handle, false);
+    InputSystem::StaticInitialize(handle);
 
     ASSERT(mCurrentState != nullptr, "App: need an app state to run");
     mCurrentState->Initialize();
 
+    InputSystem* input = InputSystem::Get();
     mRunning = true;
     while (mRunning)
     {
-        LOG("Running");
-
         myWindow.ProcessMessages();
+        input->Update();
 
-        if (!myWindow.IsActive())
+        if (!myWindow.IsActive() || input->IsKeyPressed(KeyCode::ESCAPE))
         {
             Quit();
             continue;
@@ -59,6 +61,7 @@ void App::Run(const AppConfig& config)
     LOG("App Quit");
     mCurrentState->Terminate();
 
+    InputSystem::StaticTerminate();
     GraphicsSystem::StaticTerminate();
     myWindow.Terminate();
 }

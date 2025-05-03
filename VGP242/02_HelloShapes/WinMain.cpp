@@ -7,7 +7,8 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
     config.appName = L"Hello Shapes";
 
     RedSnowEngine::App& myApp = RedSnowEngine::MainApp();
-    myApp.AddState<ShapeState>("Shapes State");
+    myApp.AddState<ShapeState>("ShapeState");
+    myApp.AddState<TriangleShapeState>("TriangleShapeState");
     myApp.Run(config);
 
     return 0;
