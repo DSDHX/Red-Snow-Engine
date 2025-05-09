@@ -8,7 +8,10 @@ void ShapeState::Initialize()
 {
     CreateShape();
 
+    ASSERT(!mVertices.empty(), "No vertices to create a shape");
+
     auto device = GraphicsSystem::Get()->GetDevice();
+    SafeRelease(mVertexBuffer);
 
     D3D11_BUFFER_DESC bufferDesc{};
     bufferDesc.ByteWidth = static_cast<UINT>(mVertices.size() * sizeof(Vertex));
@@ -99,16 +102,13 @@ void ShapeState::Terminate()
     SafeRelease(mVertexBuffer);
 }
 
-void ShapeState::Update(float deltaTime)
-{
-    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
-    {
-        RedSnowEngine::MainApp().ChangeState("TriangleShapeState");
-    }
-}
-
 void ShapeState::Render()
 {
+    if (!mVertexBuffer || mVertices.empty())
+    {
+        return;
+    }
+
     auto context = GraphicsSystem::Get()->GetContext();
 
     context->VSSetShader(mVertexShader, nullptr, 0);
@@ -123,36 +123,57 @@ void ShapeState::Render()
     context->Draw(static_cast<UINT>(mVertices.size()), 0);
 }
 
-void ShapeState::CreateShape()
+void ShapeState::RecreateVertexBuffer()
 {
-    mVertices.push_back({ {-0.5f, 0.0f, 0.0f}, Colors::Red });
-    mVertices.push_back({ { 0.0f, 0.75f, 0.0f}, Colors::Blue });
-    mVertices.push_back({ { 0.5f, 0.0f, 0.0f}, Colors::Green });
-
-    mVertices.push_back({ {-0.5f, 0.0f, 0.0f}, Colors::Red });
-    mVertices.push_back({ { 0.5f, 0.0f, 0.0f}, Colors::Blue });
-    mVertices.push_back({ { 0.0f, -0.75f, 0.0f}, Colors::Green });
-}
-
-void TriangleShapeState::Update(float deltaTime)
-{
-    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
+    if (mVertices.empty())
     {
-        RedSnowEngine::MainApp().ChangeState("ShapeState");
+        SafeRelease(mVertexBuffer);
+        return;
     }
+
+    auto device = GraphicsSystem::Get()->GetDevice();
+    SafeRelease(mVertexBuffer);
+
+    D3D11_BUFFER_DESC bufferDesc{};
+    bufferDesc.ByteWidth = static_cast<UINT>(mVertices.size() * sizeof(Vertex));
+    bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+    bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    bufferDesc.CPUAccessFlags = 0;
+    bufferDesc.MiscFlags = 0;
+    bufferDesc.StructureByteStride = 0;
+
+    D3D11_SUBRESOURCE_DATA initData{};
+    initData.pSysMem = mVertices.data();
+
+    HRESULT hr = device->CreateBuffer(&bufferDesc, &initData, &mVertexBuffer);
+    ASSERT(SUCCEEDED(hr), "Failed to create vertex buffer");
 }
 
-void TriangleShapeState::CreateShape()
+void TriforceShapeState::CreateShape()
 {
-    mVertices.push_back({ {-0.75f, -0.75f, 0.0f}, Colors::Red });
-    mVertices.push_back({ { -0.5f, 0.0f, 0.0f}, Colors::Blue });
-    mVertices.push_back({ { -0.25f, -0.75f, 0.0f}, Colors::Green });
+    mVertices.clear();
 
-    mVertices.push_back({ {-0.5f, 0.0f, 0.0f}, Colors::Red });
-    mVertices.push_back({ { 0.0f, 0.75f, 0.0f}, Colors::Blue });
-    mVertices.push_back({ { 0.5f, 0.0f, 0.0f}, Colors::Green });
+    float scale = 0.4f;
+    float h_offset = 0.0f;
+    float v_offset = 0.0f;
 
-    mVertices.push_back({ { 0.25f, -0.75f, 0.0f}, Colors::Red });
-    mVertices.push_back({ { 0.5f, 0.0f, 0.0f}, Colors::Blue });
-    mVertices.push_back({ { 0.75f, -0.75f, 0.0f}, Colors::Green });
+    //mVertices.push_back({ {h_offset + 0.0f * scale, v_offset + 1.0f * scale, 0.0f}, Colors::Gold });
+    //mVertices.push_back({ {h_offset + 1.25f * scale, v_offset + 0.0f * scale, 1.0f}, Colors::Gold });
+    //mVertices.push_back({ {h_offset + 0.5f * scale, v_offset + 0.0f * scale, 0.0f}, Colors::Gold });
+
+    mVertices.push_back({ {h_offset - 0.5f * scale, v_offset + 0.0f * scale, 0.0f}, Colors::Goldenrod });
+    mVertices.push_back({ {h_offset + 1.0f * scale, v_offset + 1.0f * scale, 0.0f}, Colors::Goldenrod });
+    mVertices.push_back({ {h_offset + 0.0f * scale, v_offset - 1.0f * scale, 0.0f}, Colors::Goldenrod });
+
+    mVertices.push_back({ {h_offset - 0.5f * scale, v_offset + 0.0f * scale, 0.0f}, Colors::DarkGoldenrod });
+    mVertices.push_back({ {h_offset + 0.0f * scale, v_offset + 1.0f * scale, 0.0f}, Colors::DarkGoldenrod });
+    mVertices.push_back({ {h_offset + 1.0f * scale, v_offset - 1.0f * scale, 0.0f}, Colors::DarkGoldenrod });
+}
+
+void TriforceShapeState::Update(float deltaTime)
+{
+    //if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::SPACE))
+    //{
+
+    //}
 }
