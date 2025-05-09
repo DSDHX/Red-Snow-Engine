@@ -9,6 +9,8 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
     RedSnowEngine::App& myApp = RedSnowEngine::MainApp();
     //myApp.AddState<ShapeState>("ShapeState");
     myApp.AddState<TriforceShapeState>("TriforceShapeState");
+    myApp.AddState<DiamondShapeState>("DiamondShapeState");
+    myApp.AddState<HeartShapeState>("HeartShapeState");
 
     myApp.Run(config);
 

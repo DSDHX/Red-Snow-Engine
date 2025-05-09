@@ -172,8 +172,73 @@ void TriforceShapeState::CreateShape()
 
 void TriforceShapeState::Update(float deltaTime)
 {
-    //if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::SPACE))
-    //{
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::SPACE))
+    {
+        MainApp().ChangeState("DiamondShapeState");
+    }
+}
 
-    //}
+void DiamondShapeState::CreateShape()
+{
+    mVertices.clear();
+
+    float topY = 0.7f;
+    float midY = 0.0f;
+    float botY = -0.7f;
+    float midX = 0.35f;
+    float tipX = 0.0f;
+
+    Color c1 = Colors::LightSkyBlue;
+    Color c2 = Colors::DeepSkyBlue;
+    Color c3 = Colors::CornflowerBlue;
+    Color c4 = Colors::DodgerBlue;
+
+    mVertices.push_back({ {tipX, topY, 0.0f}, c1 });
+    mVertices.push_back({ {midX, midY, 0.0f}, c1 });
+    mVertices.push_back({ {tipX, midY, 0.0f}, c1 });
+
+    mVertices.push_back({ {tipX, topY, 0.0f}, c2 });
+    mVertices.push_back({ {tipX, midY, 0.0f}, c2 });
+    mVertices.push_back({ {-midX, midY, 0.0f}, c2 });
+
+    mVertices.push_back({ {tipX, botY, 0.0f}, c3 });
+    mVertices.push_back({ {tipX, midY, 0.0f}, c3 });
+    mVertices.push_back({ {midX, midY, 0.0f}, c3 });
+
+    mVertices.push_back({ {tipX, botY, 0.0f}, c4 });
+    mVertices.push_back({ {-midX, midY, 0.0f}, c4 });
+    mVertices.push_back({ {tipX, midY, 0.0f}, c4 });
+}
+
+void DiamondShapeState::Update(float deltaTime)
+{
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::SPACE))
+    {
+        MainApp().ChangeState("HeartShapeState");
+    }
+}
+
+void HeartShapeState::CreateShape()
+{
+    mVertices.clear();
+
+    mVertices.push_back({ { 0.00f, -0.6f, 0.0f}, Colors::AliceBlue });
+    mVertices.push_back({ {-0.35f, 0.0f, 0.0f}, Colors::AliceBlue });
+    mVertices.push_back({ { 0.35f, 0.0f, 0.0f}, Colors::AliceBlue });
+
+    mVertices.push_back({ {-0.35f, 0.0f, 0.0f}, Colors::Aqua });
+    mVertices.push_back({ {-0.3f, 0.5f, 0.0f}, Colors::Aqua });
+    mVertices.push_back({ { 0.0f, 0.5f, 0.0f}, Colors::Aqua });
+
+    mVertices.push_back({ { 0.35f, 0.0f, 0.0f}, Colors::Aquamarine });
+    mVertices.push_back({ { 0.0f, 0.5f, 0.0f}, Colors::Aquamarine });
+    mVertices.push_back({ { 0.3f, 0.5f, 0.0f}, Colors::Aquamarine });
+}
+
+void HeartShapeState::Update(float deltaTime)
+{
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::SPACE))
+    {
+        MainApp().ChangeState("TriforceShapeState");
+    }
 }
