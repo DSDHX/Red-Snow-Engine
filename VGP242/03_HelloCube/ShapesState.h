@@ -13,9 +13,9 @@ public:
 protected:
     virtual void CreateShape();
 
-    using Vertices = std::vector<RedSnowEngine::Graphics::VertexPC>;
-    Vertices mVertices;
-
+    RedSnowEngine::Graphics::MeshPC mMesh;
+    RedSnowEngine::Graphics::Camera mCamera;
+    RedSnowEngine::Graphics::ConstantBuffer mTransformBuffer;
     RedSnowEngine::Graphics::MeshBuffer mMeshBuffer;
     RedSnowEngine::Graphics::VertexShader mVertexShader;
     RedSnowEngine::Graphics::PixelShader mPixelShader;
