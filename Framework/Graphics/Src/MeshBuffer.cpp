@@ -42,8 +42,11 @@ void MeshBuffer::SetTopology(Topology topology)
 void MeshBuffer::Render() const
 {
     auto context = GraphicsSystem::Get()->GetContext();
+
+    context->IASetPrimitiveTopology(mTopology);
     UINT offset = 0;
     context->IASetVertexBuffers(0, 1, &mVertexBuffer, &mVertexSize, &offset);
+
     if (mIndexBuffer != nullptr)
     {
         context->IASetIndexBuffer(mIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
