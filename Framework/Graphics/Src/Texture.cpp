@@ -1,61 +1,22 @@
 #include "Precompiled.h"
 #include "Texture.h"
 
-#include "GraphicsSystem.h"
-#include <DirectXTK/Inc/WICTextureLoader.h>
-
 using namespace RedSnowEngine;
 using namespace RedSnowEngine::Graphics;
 
-void Texture::UnbindVS(uint32_t slot)
+void RedSnowEngine::Graphics::Texture::UnbindVS(uint32_t slot)
 {
-    static ID3D11ShaderResourceView* dummy = nullptr;
-    GraphicsSystem::Get()->GetContext()->PSSetShaderResources(slot, 1, &dummy);
 }
 
-Texture::~Texture()
+RedSnowEngine::Graphics::Texture::~Texture()
 {
-    ASSERT(mShaderResourceView == nullptr, "Texture: terminate must be called");
 }
 
-Texture::Texture(Texture&& rhs) noexcept : mShaderResourceView(rhs.mShaderResourceView)
+RedSnowEngine::Graphics::Texture::Texture(Texture&& rhs) noexcept
 {
-    rhs.mShaderResourceView = nullptr;
 }
 
-Texture& Texture::operator=(Texture&& rhs) noexcept
+Texture& RedSnowEngine::Graphics::Texture::operator=(Texture&& rhs) noexcept
 {
-    mShaderResourceView = rhs.mShaderResourceView;
-    rhs.mShaderResourceView = nullptr;
-    return *this;
-}
-
-void Texture::Initialize(const std::filesystem::path& fileName)
-{
-    auto device = GraphicsSystem::Get()->GetDevice();
-    auto context = GraphicsSystem::Get()->GetContext();
-    HRESULT hr = DirectX::CreateWICTextureFromFile(device, context, fileName.c_str(), nullptr, &mShaderResourceView);
-    ASSERT(SUCCEEDED(hr), "Texture: failed to create texture %s", fileName.c_str());
-}
-
-void Texture::Terminate()
-{
-    SafeRelease(mShaderResourceView);
-}
-
-void Texture::BindVS(uint32_t slot) const
-{
-    auto context = GraphicsSystem::Get()->GetContext();
-    context->VSSetShaderResources(slot, 1, &mShaderResourceView);
-}
-
-void Texture::BindPS(uint32_t slot) const
-{
-    auto context = GraphicsSystem::Get()->GetContext();
-    context->PSSetShaderResources(slot, 1, &mShaderResourceView);
-}
-
-void* Texture::GetRawData() const
-{
-    return mShaderResourceView;
+    // TODO: insert return statement here
 }
