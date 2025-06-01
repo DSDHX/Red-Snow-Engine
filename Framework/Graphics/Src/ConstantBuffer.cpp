@@ -2,6 +2,7 @@
 #include "ConstantBuffer.h"
 
 #include "GraphicsSystem.h"
+#include "Texture.h"
 
 using namespace RedSnowEngine;
 using namespace RedSnowEngine::Graphics;
@@ -48,4 +49,9 @@ void ConstantBuffer::BindPS(uint32_t slot) const
 {
     auto context = GraphicsSystem::Get()->GetContext();
     context->PSSetConstantBuffers(slot, 1, &mConstantBuffer);
+}
+
+void* RedSnowEngine::Graphics::Texture::GetRawData() const
+{
+    return nullptr;
 }
