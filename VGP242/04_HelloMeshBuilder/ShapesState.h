@@ -13,7 +13,7 @@ public:
 protected:
     virtual void CreateShape();
 
-    RedSnowEngine::Graphics::MeshPC mMesh;
+    RedSnowEngine::Graphics::MeshPX mMesh;
     RedSnowEngine::Graphics::Camera mCamera;
     RedSnowEngine::Graphics::ConstantBuffer mTransformBuffer;
     RedSnowEngine::Graphics::MeshBuffer mMeshBuffer;

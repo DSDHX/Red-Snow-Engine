@@ -15,7 +15,7 @@ void ShapeState::Initialize()
     CreateShape();
     mMeshBuffer.Initialize(mMesh);
 
-    std::filesystem::path shaderFilePath = L"../../Assets/Shaders/DoTransformColor.fx";
+    std::filesystem::path shaderFilePath = L"../../Assets/Shaders/DoTexture.fx";
     mVertexShader.Initialize<VertexPC>(shaderFilePath);
     mPixelShader.Initialize(shaderFilePath);
 
@@ -80,5 +80,7 @@ void ShapeState::CreateShape()
     //mMesh = MeshBuilder::CreateRectanglePC(1.0f, 2.0f, 4.0f);
     //mMesh = MeshBuilder::CreatePlanePC(10, 10, 1.0f);
     //mMesh = MeshBuilder::CreateCylinderPC(20, 3);
-    mMesh = MeshBuilder::CreateSpherePC(30, 30, 1.0f);
+    //mMesh = MeshBuilder::CreateSpherePC(30, 30, 1.0f);
+    mMesh = MeshBuilder::CreateSpherePX(30, 30, 1.0f);
+    //mMesh = MeshBuilder::CreatePlanePX(30, 30, 1.0f);
 }
