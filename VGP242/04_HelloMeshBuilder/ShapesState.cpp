@@ -18,11 +18,15 @@ void ShapeState::Initialize()
     std::filesystem::path shaderFilePath = L"../../Assets/Shaders/DoTransformColor.fx";
     mVertexShader.Initialize<VertexPC>(shaderFilePath);
     mPixelShader.Initialize(shaderFilePath);
+
+    mTexture.Initialize(L"../../Assets/Textures/earth.jpg");
+    mSampler.Initialize(Sampler::Filter::Linear, Sampler::AddressMode::Wrap);
 }
 
 void ShapeState::Terminate()
 {
     mMesh.vertices.clear();
+    mTexture.Terminate();
     mTransformBuffer.Terminate();
     mPixelShader.Terminate();
     mVertexShader.Terminate();
@@ -53,6 +57,9 @@ void ShapeState::Render()
 {
     mVertexShader.Bind();
     mPixelShader.Bind();
+
+    mSampler.BindPS(0);
+    mTexture.BindPS(0);
 
     mTransformBuffer.BindVS(0);
 

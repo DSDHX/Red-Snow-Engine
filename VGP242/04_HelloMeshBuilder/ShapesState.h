@@ -19,4 +19,7 @@ protected:
     RedSnowEngine::Graphics::MeshBuffer mMeshBuffer;
     RedSnowEngine::Graphics::VertexShader mVertexShader;
     RedSnowEngine::Graphics::PixelShader mPixelShader;
+
+    RedSnowEngine::Graphics::Texture mTexture;
+    RedSnowEngine::Graphics::Sampler mSampler;
 };
