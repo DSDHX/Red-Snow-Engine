@@ -11,6 +11,5 @@
 #include "MeshBuilder.h"
 #include "MeshTypes.h"
 #include "PixelShader.h"
-#include "Texture.h"
 #include "VertexShader.h"
 #include "VertexTypes.h"
