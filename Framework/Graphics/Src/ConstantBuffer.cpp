@@ -2,6 +2,7 @@
 #include "ConstantBuffer.h"
 
 #include "GraphicsSystem.h"
+#include "Texture.h"
 
 using namespace RedSnowEngine;
 using namespace RedSnowEngine::Graphics;
