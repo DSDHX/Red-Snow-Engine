@@ -20,6 +20,8 @@ void App::Run(const AppConfig& config)
     auto handle = myWindow.GetWindowHandle();
     GraphicsSystem::StaticInitialize(handle, false);
     InputSystem::StaticInitialize(handle);
+    DebugUI::StaticInitialize(handle, false, true);
+    SimpleDraw::StaticInitialize(config.maxVertexCount);
 
     ASSERT(mCurrentState != nullptr, "App: need an app state to run");
     mCurrentState->Initialize();
@@ -54,13 +56,18 @@ void App::Run(const AppConfig& config)
 
         GraphicsSystem* gs = GraphicsSystem::Get();
         gs->BeginRender();
-        mCurrentState->Render();
+            mCurrentState->Render();
+            DebugUI::BeginRender();
+                mCurrentState->DebugUI();
+            DebugUI::EndRender();
         gs->EndRender();
     }
 
     LOG("App Quit");
     mCurrentState->Terminate();
 
+    SimpleDraw::StaticTerminate();
+    DebugUI::StaticTerminate();
     InputSystem::StaticTerminate();
     GraphicsSystem::StaticTerminate();
     myWindow.Terminate();
