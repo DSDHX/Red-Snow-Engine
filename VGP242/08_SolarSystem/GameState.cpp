@@ -79,7 +79,7 @@ void GameState::Initialize() {
             auto moon = std::make_unique<RenderObject>();
             MeshPX moonSphere = MeshBuilder::CreateSpherePX(32, 32, 0.2724f * visualScale);
             moon->mesh.Initialize(moonSphere);
-            moon->textureId = TextureManager::Get()->LoadTexture(L"planets/pluto.jpg");
+            moon->textureId = TextureManager::Get()->LoadTexture(L"planets/moon.jpg");
             moon->matWorld = Math::Matrix4::Translation(2.5f, 0.0f, 0.0f);
             mMoons.push_back(std::move(moon));
         }
