@@ -23,4 +23,6 @@ private:
     RedSnowEngine::Graphics::SimpleTextureEffect::RenderData mObject1;
 
     RedSnowEngine::Graphics::RenderTarget mRenderTarget;
+
+    RedSnowEngine::Math::Matrix4 mWorldMat = RedSnowEngine::Math::Matrix4::Identity;
 };
