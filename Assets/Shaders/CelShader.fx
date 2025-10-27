@@ -96,10 +96,9 @@ float4 PS(VS_OUTPUT input) : SV_Target
     }
     
     float edgeThickness = 0.85f;
-    float edgeThreshold = 0.01f;
     float e = 1.0f - saturate(dot(view, n));
     e = smoothstep(edgeThickness - 0.01f, edgeThickness + 0.01f, e);
-    float4 emissive = materialEmissive;
+    float4 emissive = e * materialEmissive;
     
     float4 ambient = lightAmbient * materialAmbient;
     
