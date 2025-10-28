@@ -1,8 +1,8 @@
 #include <RedSnowEngine/Inc/RedSnowEngine.h>
 
-#include <assimp-5.2.5/include/assimp/Importer.hpp>
-#include <assimp-5.2.5/include/assimp/scene.h>
-#include <assimp-5.2.5/include/assimp/postprocess.h>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 #include <cstdio>
 
@@ -108,14 +108,14 @@ int main(int argc, char* argv[])
             const aiVector3D* positions = aiMesh->mVertices;
             const aiVector3D* normals = aiMesh->mNormals;
             const aiVector3D* tangents = (aiMesh->HasTangentsAndBitangents()) ? aiMesh->mTangents : nullptr;
-            const aiVector3D* texCoords = (aiMesh->HasTextureCoords(0)) ? aiMesh->mTextureCoords : nullptr;
+            const aiVector3D* texCoords = (aiMesh->HasTextureCoords(0)) ? aiMesh->mTextureCoords[0]: nullptr;
             for (uint32_t v = 0; v < numVertices; ++v)
             {
                 Vertex& vertex = mesh.vertices.emplace_back();
                 vertex.position = ToVector3(positions[v]) * args.scale;
                 vertex.normal = ToVector3(normals[v]);
                 vertex.tangent = tangents ? ToVector3(tangents[v]) : Vector3::Zero;
-                vertex.uvCoord = texCoords ? ToTexCoord(texCoords[v]) : Vector2::Zero;
+                vertex.uvCoord = texCoords ? ToVector2(texCoords[v]) : Vector2::Zero;
             }
 
             printf("Reading Indices...\n");
@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
                 const auto& aiFace = aiFaces[f];
                 for (uint32_t i = 0; i < 3; ++i)
                 {
-                    mesh.indices.push_back(aiFace, mIndices[i]);
+                    mesh.indices.push_back(aiFace.mIndices[i]);
                 }
             }
         }
