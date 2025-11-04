@@ -30,7 +30,7 @@ void ModelIO::SaveModel(std::filesystem::path filePath, const Model& model)
         fprintf_s(file, "MatrialIndex: %d\n", meshData.materialIndex);
 
         const Mesh& mesh = meshData.mesh;
-        const uint32_t vertexCount = static_cast<uint32_t>(model.meshData.size());
+        const uint32_t vertexCount = static_cast<uint32_t>(mesh.vertices.size());
         fprintf_s(file, "VertexCount: %d\n", vertexCount);
         for (const Vertex& v : mesh.vertices)
         {
@@ -41,7 +41,7 @@ void ModelIO::SaveModel(std::filesystem::path filePath, const Model& model)
                 v.uvCoord.x, v.uvCoord.y);
         }
 
-        uint32_t indexCount = static_cast<uint32_t>(model.meshData.size());
+        uint32_t indexCount = static_cast<uint32_t>(mesh.indices.size());
         fprintf_s(file, "IndexCount: %d\n", indexCount);
         for (uint32_t i = 2; i < indexCount; i += 3)
         {
@@ -56,27 +56,27 @@ void ModelIO::LoadModel(std::filesystem::path filePath, Model& model)
     filePath.replace_extension("model");
 
     FILE* file = nullptr;
-    fopen_s(&file, filePath.u8string().c_str(), "w");
+    fopen_s(&file, filePath.u8string().c_str(), "r");
     if (file == nullptr)
     {
         return;
     }
 
     uint32_t meshCount = 0;
-    fscanf_s(file, "MeshCount: %d\n", meshCount);
+    fscanf_s(file, "MeshCount: %d\n", &meshCount);
     model.meshData.resize(meshCount);
     for (uint32_t m = 0; m < meshCount; ++m)
     {
-        const Model::MeshData& meshData = model.meshData[m];
-        fprintf_s(file, "MatrialIndex: %d\n", meshData.materialIndex);
+        Model::MeshData& meshData = model.meshData[m];
+        fscanf_s(file, "MatrialIndex: %d\n", &meshData.materialIndex);
 
-        const Mesh& mesh = meshData.mesh;
+        Mesh& mesh = meshData.mesh;
         uint32_t vertexCount = 0;
-        fscanf_s(file, "VertexCount: %d\n", vertexCount);
+        fscanf_s(file, "VertexCount: %d\n", &vertexCount);
         mesh.vertices.resize(vertexCount);
         for (Vertex& v : mesh.vertices)
         {
-            fprintf_s(file, "%f %f %f %f %f %f %f %f %f %f %f\n",
+            fscanf_s(file, "%f %f %f %f %f %f %f %f %f %f %f\n",
                 &v.position.x, &v.position.y, &v.position.z,
                 &v.normal.x, &v.normal.y, &v.normal.z,
                 &v.tangent.x, &v.tangent.y, &v.tangent.z,
@@ -84,7 +84,7 @@ void ModelIO::LoadModel(std::filesystem::path filePath, Model& model)
         }
 
         uint32_t indexCount = 0;
-        fscanf_s(file, "IndexCount: %d\n", indexCount);
+        fscanf_s(file, "IndexCount: %d\n", &indexCount);
         mesh.indices.resize(indexCount);
         for (uint32_t i = 2; i < indexCount; i += 3)
         {
