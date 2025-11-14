@@ -34,7 +34,7 @@ void SimpleTextureEffect::Begin()
 
 void SimpleTextureEffect::End()
 {
-    Texture::UnbindVS(0);
+    Texture::UnbindPS(0);
 }
 
 void SimpleTextureEffect::Render(const RenderData& renderData)

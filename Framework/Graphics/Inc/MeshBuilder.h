@@ -29,7 +29,6 @@ namespace RedSnowEngine::Graphics
 
         static MeshPX CreateOBJPX(const std::filesystem::path& filePath, float scale);
 
-    private:
-
+        static MeshPX CreateScreenQuadPX();
     };
 }

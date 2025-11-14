@@ -5,7 +5,7 @@ namespace RedSnowEngine::Graphics
 	class Texture
 	{
 	public:
-        static void UnbindVS(uint32_t slot);
+        static void UnbindPS(uint32_t slot);
 
         Texture() = default;
 		virtual ~Texture();
