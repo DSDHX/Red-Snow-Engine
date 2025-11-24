@@ -2,6 +2,7 @@ cbuffer TransformBuffer : register(b0)
 {
     matrix wvp;
     matrix world;
+    matrix lwvp;
     float3 viewPosition;
 }
 
@@ -28,7 +29,9 @@ cbuffer SettingBuffer : register(b3)
     bool useSpecMap;
     bool useNormalMap;
     bool useBumpMap;
+    bool useShadowMap;
     float bumpMapWeight;
+    float depthBias;
 }
 
 SamplerState textureSampler : register(s0);
@@ -37,6 +40,7 @@ Texture2D diffuseMap : register(t0);
 Texture2D specMap : register(t1);
 Texture2D normalMap : register(t2);
 Texture2D bumpMap : register(t3);
+Texture2D shadowMap : register(t4);
 
 struct VS_INPUT
 {
@@ -54,6 +58,7 @@ struct VS_OUTPUT
     float2 texCoord : TEXCOORD;
     float3 dirToLight : TEXCOORD1;
     float3 dirToView : TEXCOORD2;
+    float4 lightNDCposition : TEXCOORD3;
 };
 
 VS_OUTPUT VS(VS_INPUT input)
@@ -75,6 +80,10 @@ VS_OUTPUT VS(VS_INPUT input)
     
     float4 worldPosition = mul(float4(localPosition, 1.0f), world);
     output.dirToView = normalize(viewPosition - worldPosition.xyz);
+    if (useShadowMap)
+    {
+        output.lightNDCposition = mul(float4(localPosition, 1.0f), lwvp);
+    }
     
     return output;
 }
@@ -111,7 +120,22 @@ float4 PS(VS_OUTPUT input) : SV_Target
     float4 specMapColor = (useSpecMap) ? specMap.Sample(textureSampler, input.texCoord).r : 1.0f;
     
     float4 finalColor = (emissive + ambient + diffuse) * diffuseMapColor + (specular * specMapColor);
-    return finalColor;
+    if (useShadowMap)
+    {
+        float actualDepth = 1.0f - (input.lightNDCposition.z / input.lightNDCposition.w);
+        float2 shadowUV = input.lightNDCposition.xy / input.lightNDCposition.w;
+        float u = (shadowUV.x + 1.0f) * 0.5f;
+        float v = 1.0f - (shadowUV.y + 1.0f) * 0.5f;
+        if (saturate(u) == u && saturate(v) == v)
+        {
+            float savedColor = shadowMap.Sample(textureSampler, float2(u, v));
+            float savedDepth = savedColor.r;
+            if (savedDepth > actualDepth + depthBias)
+            {
+                finalColor = (emissive + ambient) * diffuseMapColor;
+            }
+        }
+    }
     
-    return 1.0f;
+    return finalColor;
 }
