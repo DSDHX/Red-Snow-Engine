@@ -10,6 +10,7 @@
 #include "ConstantBuffer.h"
 #include "DebugUI.h"
 #include "DirectionalLight.h"
+#include "HalftoneEffect.h"
 #include "Material.h"
 #include "MeshBuffer.h"
 #include "MeshBuilder.h"
