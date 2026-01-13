@@ -1,0 +1,55 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Assets/" />
+  <Folder Name="/Assets/Shaders/">
+    <File Path="Assets/Shaders/CelShader.fx" />
+    <File Path="Assets/Shaders/DoColor.fx" />
+    <File Path="Assets/Shaders/DoSomething.fx" />
+    <File Path="Assets/Shaders/DoTexture.fx" />
+    <File Path="Assets/Shaders/DoTransformColor.fx" />
+    <File Path="Assets/Shaders/Halftone.fx" />
+    <File Path="Assets/Shaders/PostProcessing.fx" />
+    <File Path="Assets/Shaders/Shadow.fx" />
+    <File Path="Assets/Shaders/SimpleDraw.fx" />
+    <File Path="Assets/Shaders/Standard.fx" />
+    <File Path="Assets/Shaders/Terrain.fx" />
+  </Folder>
+  <Folder Name="/Engine/">
+    <Project Path="Engine/RedSnowEngine/Red Snow Engine.vcxproj" Id="4f613025-a2f3-4f96-b111-e20bb6efd8db" />
+  </Folder>
+  <Folder Name="/External/">
+    <Project Path="External/DirectXTK/DirectXTK_Desktop_2022.vcxproj" Id="e0b52ae7-e160-4d32-bf3f-910b785e5a8e" />
+    <Project Path="External/ImGui/ImGui.vcxproj" Id="52d656a2-a2f4-4c54-a3c7-653427bed1e8" />
+  </Folder>
+  <Folder Name="/Framework/">
+    <Project Path="Framework/Core/Core.vcxproj" Id="5841b74a-7aaf-4a18-99c0-a9c81741af26" />
+    <Project Path="Framework/Graphics/Graphics.vcxproj" Id="2e0165f9-2cd1-48ee-b032-42bebc34fa71" />
+    <Project Path="Framework/Input/Input.vcxproj" Id="3629f01a-6fed-42eb-b308-e9f7f1346eaf" />
+    <Project Path="Framework/Math/Math.vcxproj" Id="98d92fb6-8e92-4ae1-b7ab-6a8242fede3e" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="Tools/ModelImporter/ModelImporter.vcxproj" Id="cc555d5a-3282-410d-8795-d580a4bb47ee" />
+  </Folder>
+  <Folder Name="/VGP242/">
+    <Project Path="VGP242/01_HelloWindow/01_HelloWindow.vcxproj" Id="ab7cba45-bf8c-4355-8ad0-1e6890864114" />
+    <Project Path="VGP242/02_HelloShapes/02_HelloShapes.vcxproj" Id="506942d7-1fce-4334-b642-67a2a2632770" />
+    <Project Path="VGP242/03_HelloCube/03_HelloCube.vcxproj" Id="061bad3b-4f3d-48bd-954f-ed89a828f4db" />
+    <Project Path="VGP242/04_HelloMeshBuilder/04_HelloMeshBuilder.vcxproj" Id="705162b7-27e1-44f4-a807-0dfb876ef9b8" />
+    <Project Path="VGP242/05_HelloDebug/05_HelloDebug.vcxproj" Id="e40b98f4-fd92-435b-8ad5-d41be0cfca33" />
+    <Project Path="VGP242/06_HelloRenderTarget/06_HelloRenderTarget.vcxproj" Id="73a81171-b231-4b4c-bbbf-8e961fe793da" />
+    <Project Path="VGP242/07_HelloSimpleTextureEffect/07_HelloSimpleTextureEffect.vcxproj" Id="6b22154c-4dda-4b6e-b71c-1d2800bf1ce3" />
+    <Project Path="VGP242/08_SolarSystem/08_SolarSystem.vcxproj" Id="0fdc6a60-08c5-4ea0-9996-825a09bf56df" />
+  </Folder>
+  <Folder Name="/VGP330/">
+    <Project Path="VGP330/08_HelloLighting/08_HelloLighting.vcxproj" Id="6c061c41-d76a-4bad-a6ea-a7fcd13b7ec9" />
+    <Project Path="VGP330/09_HelloCelShader/09_HelloCelShader.vcxproj" Id="a08a7153-944a-44bf-8428-a0803c3e821d" />
+    <Project Path="VGP330/10_HelloMode/10_HelloMode.vcxproj" Id="0ecc8cba-3992-4b1d-81c5-4ba4edc2be94" />
+    <Project Path="VGP330/11_HelloPostProcessing/11_HelloPostProcessing.vcxproj" Id="5e0c0735-153a-4347-8575-943614976214" />
+    <Project Path="VGP330/12_HelloShadow/12_HelloShadow.vcxproj" Id="3af9ed1b-dfee-4631-be3a-e3034f200df2" />
+    <Project Path="VGP330/13_HelloTerrain/13_HelloTerrain.vcxproj" Id="cefbb475-3052-4b4e-9e60-c9b83f0ce997" />
+    <Project Path="VGP330/14_HalftoneShader/14_HalftoneShader.vcxproj" Id="9f7b6d42-695a-4854-ad40-5e4d5244368b" />
+  </Folder>
+</Solution>
