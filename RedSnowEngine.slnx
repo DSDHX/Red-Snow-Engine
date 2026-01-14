@@ -52,4 +52,7 @@
     <Project Path="VGP330/13_HelloTerrain/13_HelloTerrain.vcxproj" Id="cefbb475-3052-4b4e-9e60-c9b83f0ce997" />
     <Project Path="VGP330/14_HalftoneShader/14_HalftoneShader.vcxproj" Id="9f7b6d42-695a-4854-ad40-5e4d5244368b" />
   </Folder>
+  <Folder Name="/VGP334/">
+    <Project Path="VGP334/14_HelloAnimation/14_HelloAnimation.vcxproj" Id="6edd8b18-3571-4bff-b544-6c4658e95122" />
+  </Folder>
 </Solution>
