@@ -54,5 +54,6 @@
   </Folder>
   <Folder Name="/VGP334/">
     <Project Path="VGP334/14_HelloAnimation/14_HelloAnimation.vcxproj" Id="6edd8b18-3571-4bff-b544-6c4658e95122" />
+    <Project Path="VGP334/15_HelloSkeleton/15_HelloSkeleton.vcxproj" Id="f33f8178-ccb8-4274-8a46-3b9c5a747f0e" />
   </Folder>
 </Solution>
