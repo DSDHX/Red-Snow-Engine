@@ -5,6 +5,7 @@
 #include "Material.h"
 #include "TextureManager.h"
 #include "ModelManager.h"
+#include "Animator.h"
 
 namespace RedSnowEngine::Graphics
 {
@@ -33,6 +34,8 @@ namespace RedSnowEngine::Graphics
         ModelId modelId;
         Transform transform;
         std::vector<RenderObject> renderObjects;
-        const Skeleton* skeleton;
+
+        const Skeleton* skeleton = nullptr;
+        const Animator* animator = nullptr;
     };
 }

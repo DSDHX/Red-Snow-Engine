@@ -1,1 +1,2 @@
 -scale 0.01 ../../Assets/Models/Character01/Character01.fbx ../../Assets/Models/Character01/Character01.model
+-animOnly 1 -scale 0.01 ../../Assets/Models/Character01/Strafing.fbx ../../Assets/Models/Character01/Animations/Strafing.model

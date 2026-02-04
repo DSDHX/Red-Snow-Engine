@@ -6,6 +6,7 @@
 #include "Color.h"
 
 #include "Animation.h"
+#include "Animator.h"
 #include "AnimationBuilder.h"
 #include "AnimationUtil.h"
 #include "BlendState.h"

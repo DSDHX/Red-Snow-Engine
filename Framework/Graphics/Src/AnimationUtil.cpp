@@ -9,30 +9,33 @@ using namespace RedSnowEngine::Graphics;
 
 namespace
 {
-    void ComputeBoneTransformsRecursive(const Bone* bone, AnimationUtil::BoneTransforms& boneTransforms)
+    void ComputeBoneTransformsRecursive(const Bone* bone, AnimationUtil::BoneTransforms& boneTransforms, const Animator* animator)
     {
         if (bone != nullptr)
         {
-            boneTransforms[bone->index] = bone->toParentTransform;
+            if (animator == nullptr || !animator->GoToParentTransform(bone, boneTransforms[bone->index]))
+            {
+                boneTransforms[bone->index] = bone->toParentTransform;
+            }
             if (bone->parent != nullptr)
             {
                 boneTransforms[bone->index] = boneTransforms[bone->index] * boneTransforms[bone->parentIndex];
             }
             for (const Bone* child : bone->children)
             {
-                ComputeBoneTransformsRecursive(child, boneTransforms);
+                ComputeBoneTransformsRecursive(child, boneTransforms, animator);
             }
         }
     }
 }
 
-void AnimationUtil::ComputeBoneTransforms(ModelId modelId, BoneTransforms& boneTransforms)
+void AnimationUtil::ComputeBoneTransforms(ModelId modelId, BoneTransforms& boneTransforms, const Animator* animator)
 {
     const Model* model = ModelManager::Get()->GetModel(modelId);
     if (model != nullptr && model->skeleton != nullptr)
     {
         boneTransforms.resize(model->skeleton->bones.size());
-        ComputeBoneTransformsRecursive(model->skeleton->root, boneTransforms);
+        ComputeBoneTransformsRecursive(model->skeleton->root, boneTransforms, animator);
     }
 }
 
