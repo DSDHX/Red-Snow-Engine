@@ -16,13 +16,13 @@ void AnimationIO::Write(FILE* file, const Animation& animation)
         fprintf_s(file, "%f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z);
     }
     keyCount = animation.mRotationKeys.size();
-    fprintf_s(file, "RotationKeyCount: %d\n", keyCount);
+    fprintf_s(file, "RotationKeys: %d\n", keyCount);
     for (auto& key : animation.mRotationKeys)
     {
         fprintf_s(file, "%f %f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z, key.key.w);
     }
     keyCount = animation.mScaleKeys.size();
-    fprintf_s(file, "ScaleKeyCount: %d\n", keyCount);
+    fprintf_s(file, "ScaleKeys: %d\n", keyCount);
     for (auto& key : animation.mScaleKeys)
     {
         fprintf_s(file, "%f %f %f %f\n", key.time, key.key.x, key.key.y, key.key.z);
@@ -96,7 +96,7 @@ void ModelIO::SaveModel(std::filesystem::path filePath, const Model& model)
 
         }
 
-        uint32_t indexCount = static_cast<uint32_t>(mesh.indices.size());
+        const uint32_t indexCount = static_cast<uint32_t>(mesh.indices.size());
         fprintf_s(file, "IndexCount: %d\n", indexCount);
         for (uint32_t i = 2; i < indexCount; i += 3)
         {
@@ -172,10 +172,10 @@ void ModelIO::SaveMaterial(std::filesystem::path filePath, const Model& model)
     for (const Model::MaterialData& materialData : model.materialData)
     {
         const Material& m = materialData.material;
-        fprintf_s(file, "%f %f %f %f\n", m.emissive.r, m.emissive.g, m.emissive.g, m.emissive.a);
-        fprintf_s(file, "%f %f %f %f\n", m.ambient.r, m.ambient.g, m.ambient.g, m.ambient.a);
-        fprintf_s(file, "%f %f %f %f\n", m.diffuse.r, m.diffuse.g, m.diffuse.g, m.diffuse.a);
-        fprintf_s(file, "%f %f %f %f\n", m.specular.r, m.specular.g, m.specular.g, m.specular.a);
+        fprintf_s(file, "%f %f %f %f\n", m.emissive.r, m.emissive.g, m.emissive.b, m.emissive.a);
+        fprintf_s(file, "%f %f %f %f\n", m.ambient.r, m.ambient.g, m.ambient.b, m.ambient.a);
+        fprintf_s(file, "%f %f %f %f\n", m.diffuse.r, m.diffuse.g, m.diffuse.b, m.diffuse.a);
+        fprintf_s(file, "%f %f %f %f\n", m.specular.r, m.specular.g, m.specular.b, m.specular.a);
         fprintf_s(file, "Shininess: %f\n", m.shininess);
 
         fprintf_s(file, "%s\n", materialData.diffuseMapName.empty() ? "<NONE>" : materialData.diffuseMapName.c_str());
@@ -213,10 +213,10 @@ void ModelIO::LoadMaterial(std::filesystem::path filePath, Model& model)
     for (Model::MaterialData& materialData : model.materialData)
     {
         Material& m = materialData.material;
-        fprintf_s(file, "%f %f %f %f\n", m.emissive.r, m.emissive.g, m.emissive.g, m.emissive.a);
-        fprintf_s(file, "%f %f %f %f\n", m.ambient.r, m.ambient.g, m.ambient.g, m.ambient.a);
-        fprintf_s(file, "%f %f %f %f\n", m.diffuse.r, m.diffuse.g, m.diffuse.g, m.diffuse.a);
-        fprintf_s(file, "%f %f %f %f\n", m.specular.r, m.specular.g, m.specular.g, m.specular.a);
+        fprintf_s(file, "%f %f %f %f\n", m.emissive.r, m.emissive.g, m.emissive.b, m.emissive.a);
+        fprintf_s(file, "%f %f %f %f\n", m.ambient.r, m.ambient.g, m.ambient.b, m.ambient.a);
+        fprintf_s(file, "%f %f %f %f\n", m.diffuse.r, m.diffuse.g, m.diffuse.b, m.diffuse.a);
+        fprintf_s(file, "%f %f %f %f\n", m.specular.r, m.specular.g, m.specular.b, m.specular.a);
         fprintf_s(file, "Shininess: %f\n", m.shininess);
 
         TryReadTextureName(materialData.diffuseMapName);

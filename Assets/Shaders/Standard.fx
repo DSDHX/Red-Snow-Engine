@@ -106,7 +106,7 @@ VS_OUTPUT VS(VS_INPUT input)
     float3 localPosition = input.position;
     if (useBumpMap)
     {
-        float bumpMapColor = bumpMap.SampleLevel(textureSampler, input.texCoord, 0.0f);
+        float4 bumpMapColor = bumpMap.SampleLevel(textureSampler, input.texCoord, 0.0f);
         float bumpHeight = (bumpMapColor.r * 2.0f) - 1.0f;
         localPosition += (input.normal * bumpHeight * bumpMapWeight);
     }
