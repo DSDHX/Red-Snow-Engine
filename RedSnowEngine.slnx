@@ -21,6 +21,7 @@
     <Project Path="Engine/RedSnowEngine/Red Snow Engine.vcxproj" Id="4f613025-a2f3-4f96-b111-e20bb6efd8db" />
   </Folder>
   <Folder Name="/External/">
+    <Project Path="External/Bullet/Bullet.vcxproj" Id="516192eb-788a-4fe7-b2b7-2ef9ac036b12" />
     <Project Path="External/DirectXTK/DirectXTK_Desktop_2022.vcxproj" Id="e0b52ae7-e160-4d32-bf3f-910b785e5a8e" />
     <Project Path="External/ImGui/ImGui.vcxproj" Id="52d656a2-a2f4-4c54-a3c7-653427bed1e8" />
   </Folder>
@@ -29,6 +30,7 @@
     <Project Path="Framework/Graphics/Graphics.vcxproj" Id="2e0165f9-2cd1-48ee-b032-42bebc34fa71" />
     <Project Path="Framework/Input/Input.vcxproj" Id="3629f01a-6fed-42eb-b308-e9f7f1346eaf" />
     <Project Path="Framework/Math/Math.vcxproj" Id="98d92fb6-8e92-4ae1-b7ab-6a8242fede3e" />
+    <Project Path="Framework/Physics/Physics.vcxproj" Id="f73414c3-9483-4452-812e-d2ac27d19576" />
   </Folder>
   <Folder Name="/Tools/">
     <Project Path="Tools/ModelImporter/ModelImporter.vcxproj" Id="cc555d5a-3282-410d-8795-d580a4bb47ee" />
@@ -56,5 +58,6 @@
     <Project Path="VGP334/14_HelloAnimation/14_HelloAnimation.vcxproj" Id="6edd8b18-3571-4bff-b544-6c4658e95122" />
     <Project Path="VGP334/15_HelloSkeleton/15_HelloSkeleton.vcxproj" Id="f33f8178-ccb8-4274-8a46-3b9c5a747f0e" />
     <Project Path="VGP334/16_HelloSkeletonAnimation/16_HelloSkeletonAnimation.vcxproj" Id="a8e5ef4b-6380-4e6b-a4be-c979e4253d30" />
+    <Project Path="VGP334/17_HelloPhysics/17_HelloPhysics.vcxproj" Id="64121bb5-fb33-4c2c-a822-f9028654d80d" />
   </Folder>
 </Solution>
