@@ -3,6 +3,7 @@
 using namespace RedSnowEngine;
 using namespace RedSnowEngine::Graphics;
 using namespace RedSnowEngine::Input;
+using namespace RedSnowEngine::Physics;
 
 void GameState::Initialize()
 {
@@ -14,13 +15,13 @@ void GameState::Initialize()
     mDirectionalLight.diffuse = { 0.7f, 0.7f, 0.7f, 1.0f };
     mDirectionalLight.specular = { 0.9f, 0.9f, 0.9f, 1.0f };
 
-    Mesh mesh = MeshBuilder::CreateSphere(30, 30, 0.25f);
+    Mesh mesh = MeshBuilder::CreateSphere(30, 30, 0.5f);
     mBallObject.meshBuffer.Initialize(mesh);
     TextureManager* tm = TextureManager::Get();
     mBallObject.diffuseMapId = tm->LoadTexture("misc/basketball.jpg");
     mBallObject.transform.position.y = 5.0f;
-    mBallShape.InitializeSphere(0.25f);
-    mBallRigidBody.Initialize(mBallObject.transform, mBallShape, 1.0f);
+    mBallShape.InitializeSphere(0.5f);
+    mBallRigidBody.Initialize(mBallObject.transform, mBallShape, 10.0f);
 
     Mesh plane = MeshBuilder::CreatePlane(10, 10, 1.0f, true);
     mGroundObject.meshBuffer.Initialize(plane);
@@ -32,10 +33,76 @@ void GameState::Initialize()
     mStandardEffect.Initialize(shaderFile);
     mStandardEffect.SetCamera(mCamera);
     mStandardEffect.SetDirectionalLight(mDirectionalLight);
+
+    Mesh boxShape = MeshBuilder::CreateCube(1.0f);
+    TextureId boxTexture = tm->LoadTexture("earth.jpg");
+
+    float yOffset = 4.5f;
+    float xOffset = 0.0f;
+    int rowCount = 1;
+    int boxIndex = 0;
+    mBoxes.resize(10);
+    while (boxIndex < mBoxes.size())
+    {
+        xOffset = -((static_cast<float>(rowCount) - 1.0f) * 0.5f);
+        for (int r = 0; r < rowCount; ++r)
+        {
+            BoxData& box = mBoxes[boxIndex];
+            box.box.meshBuffer.Initialize(boxShape);
+            box.box.diffuseMapId = boxTexture;
+            box.box.transform.position.x = xOffset;
+            box.box.transform.position.y = yOffset;
+            box.box.transform.position.z = 4.0f;
+            box.shape.InitializeBox({ 0.5f, 0.5f, 0.5f });
+            xOffset += 1.0f;
+            ++boxIndex;
+        }
+        yOffset -= 1.0f;
+        rowCount += 1;
+    }
+    for (int i = mBoxes.size() - 1; i >= 0; --i)
+    {
+        mBoxes[i].rigidBody.Initialize(mBoxes[i].box.transform, mBoxes[i].shape, 4.0f);
+    }
+
+    int rows = 10;
+    int cols = 10;
+    mClothMesh = MeshBuilder::CreatePlane(rows, cols, 0.5f);
+    for (Graphics::Vertex& v : mClothMesh.vertices)
+    {
+        v.position.y = 10.0f;
+        v.position.z -= 5.0f;
+    }
+    uint32_t lastVertex = mClothMesh.vertices.size() - 1;
+    uint32_t lastVertexOS = lastVertex - cols;
+    //mClothSoftBody.Initialize(mClothMesh, 1.0f, { lastVertex, lastVertexOS });
+    mCloth.meshBuffer.Initialize(nullptr, sizeof(Vertex), mClothMesh.vertices.size(), 
+        mClothMesh.indices.data(), mClothMesh.indices.size());
+    mCloth.diffuseMapId = tm->LoadTexture("planets/venus.jpg");
+
+    mClothBallMesh = MeshBuilder::CreateSphere(10, 10, 2.0f);
+    for (Graphics::Vertex& v : mClothBallMesh.vertices)
+    {
+        v.position.y += 10.0f;
+    }
+    mClothBallSoftBody.Initialize(mClothBallMesh, 1.0f, {});
+    mClothBall.meshBuffer.Initialize(nullptr, sizeof(Vertex), mClothBallMesh.vertices.size(),
+        mClothBallMesh.indices.data(), mClothBallMesh.indices.size());
+    mClothBall.diffuseMapId = tm->LoadTexture("planets/venus.jpg");
 }
 
 void GameState::Terminate()
 {
+    mClothBall.Terminate();
+    mClothBallSoftBody.Terminate();
+    mCloth.Terminate();
+    mClothSoftBody.Terminate();
+    for (BoxData& box : mBoxes)
+    {
+        box.rigidBody.Terminate();
+        box.shape.Terminate();
+        box.box.Terminate();
+    }
     mStandardEffect.Terminate();
     mGroundRigidBody.Terminate();
     mGroundShape.Terminate();
@@ -47,13 +114,27 @@ void GameState::Terminate()
 void GameState::Update(float deltaTime)
 {
     UpdateCamera(deltaTime);
+    if (InputSystem::Get()->IsMousePressed(MouseButton::LBUTTON))
+    {
+        Math::Vector3 spawnPos = mCamera.GetPosition() + (mCamera.GetDirection() * 0.5f);
+        mBallRigidBody.SetPosition(spawnPos);
+        mBallRigidBody.SetVelocity(mCamera.GetDirection() * 20.0f);
+    }
 }
 
 void GameState::Render()
 {
+    mCloth.meshBuffer.Update(mClothMesh.vertices.data(), mClothMesh.vertices.size());
+    mClothBall.meshBuffer.Update(mClothBallMesh.vertices.data(), mClothBallMesh.vertices.size());
     mStandardEffect.Begin();
         mStandardEffect.Render(mBallObject);
         mStandardEffect.Render(mGroundObject);
+        mStandardEffect.Render(mCloth);
+        mStandardEffect.Render(mClothBall);
+        for (BoxData& box : mBoxes)
+        {
+            mStandardEffect.Render(box.box);
+        }
     mStandardEffect.End();
 }
 
@@ -80,7 +161,9 @@ void GameState::DebugUI()
     }
 
     mStandardEffect.DebugUI();
+    PhysicsWorld::Get()->DebugUI();
     ImGui::End();
+    SimpleDraw::Render(mCamera);
 }
 
 void GameState::UpdateCamera(float deltaTime)

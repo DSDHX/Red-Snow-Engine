@@ -10,6 +10,7 @@ namespace RedSnowEngine::Graphics
         static MeshPC CreateCubePC(float size, const Color& color);
         static MeshPC CreateCubePC(float size);
         static MeshPX CreateCubePX(float size);
+        static Mesh CreateCube(float size);
 
         static MeshPC CreatePyramidPC(float size);
 

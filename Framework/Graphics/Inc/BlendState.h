@@ -2,21 +2,21 @@
 
 namespace RedSnowEngine::Graphics
 {
-	class BlendState final
-	{
-	public:
+    class BlendState final
+    {
+    public:
         static void ClearState();
 
-		enum class Mode
-		{
-			Opaque,
-			AlphaBlend,
-			AlphaPremultiplied,
+        enum class Mode
+        {
+            Opaque,
+            AlphaBlend,
+            AlphaPremultiplied,
             Additive
-		};
+        };
 
         BlendState() = default;
-		~BlendState();
+        ~BlendState();
 
         BlendState(const BlendState&) = delete;
         BlendState& operator=(const BlendState&) = delete;
@@ -26,8 +26,8 @@ namespace RedSnowEngine::Graphics
 
         void Set();
 
-	private:
+    private:
         ID3D11BlendState* mBlendState = nullptr;
-        //ID3D11DepthStencilState* mDepthStencilState = nullptr;
-	};
+        ID3D11DepthStencilState* mDepthStencilState = nullptr;
+    };
 }

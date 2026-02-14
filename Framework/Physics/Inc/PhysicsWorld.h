@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PhysicsDebugDraw.h"
+
 namespace RedSnowEngine::Physics
 {
     class PhysicsObject;
@@ -38,9 +40,18 @@ namespace RedSnowEngine::Physics
         btCollisionDispatcher* mDispatcher = nullptr;
         btDefaultCollisionConfiguration* mCollisionConfiguration = nullptr;
         btSequentialImpulseConstraintSolver* mSolver = nullptr;
+#ifdef USE_SOFT_BODY
+        friend class SoftBody;
+        btSoftRigidDynamicsWorld* mDynamicsWorld = nullptr;
+        btSoftRigidDynamicsWorld* GetSoftBodyWorld() { return mDynamicsWorld; }
+#else
         btDiscreteDynamicsWorld* mDynamicsWorld = nullptr;
-
+        btSoftRigidDynamicsWorld* GetSoftBodyWorld() { return nullptr; }
+#endif
         using PhysicsObjects = std::vector<PhysicsObject*>;
         PhysicsObjects mPhysicsObjects;
+
+        PhysicsDebugDraw mPhysicsDebugDraw;
+        bool mDebugDraw = false;
     };
 }
