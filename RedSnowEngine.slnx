@@ -11,6 +11,7 @@
     <File Path="Assets/Shaders/DoTexture.fx" />
     <File Path="Assets/Shaders/DoTransformColor.fx" />
     <File Path="Assets/Shaders/Halftone.fx" />
+    <File Path="Assets/Shaders/Particle.fx" />
     <File Path="Assets/Shaders/PostProcessing.fx" />
     <File Path="Assets/Shaders/Shadow.fx" />
     <File Path="Assets/Shaders/SimpleDraw.fx" />
@@ -59,5 +60,6 @@
     <Project Path="VGP334/15_HelloSkeleton/15_HelloSkeleton.vcxproj" Id="f33f8178-ccb8-4274-8a46-3b9c5a747f0e" />
     <Project Path="VGP334/16_HelloSkeletonAnimation/16_HelloSkeletonAnimation.vcxproj" Id="a8e5ef4b-6380-4e6b-a4be-c979e4253d30" />
     <Project Path="VGP334/17_HelloPhysics/17_HelloPhysics.vcxproj" Id="64121bb5-fb33-4c2c-a822-f9028654d80d" />
+    <Project Path="VGP334/18_HelloParticleSystem/18_HelloParticleSystem.vcxproj" Id="6ef3a2c7-8b66-45da-ae36-de277e496c79" />
   </Folder>
 </Solution>

@@ -11,16 +11,19 @@ RigidBody::~RigidBody()
     ASSERT(mRigidBody == nullptr, "RigidBody: terminate must be called!");
 }
 
-void RigidBody::Initialize(Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass)
+void RigidBody::Initialize(Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass, bool addToWorld)
 {
     mGraphicsTransform = &graphicsTransform;
     mMass = mass;
 
     btVector3 localInertia = btVector3();
-    shape.mCollisionShape->calculateLocalInertia(mass, localInertia);
+    //shape.mCollisionShape->calculateLocalInertia(mass, localInertia);
     mMotionState = new btDefaultMotionState(ConvertTobtTransform(graphicsTransform));
     mRigidBody = new btRigidBody(mMass, mMotionState, shape.mCollisionShape, localInertia);
-    PhysicsWorld::Get()->Register(this);
+    if (addToWorld)
+    {
+        PhysicsWorld::Get()->Register(this);
+    }
 }
 
 void RigidBody::Terminate()
@@ -28,6 +31,22 @@ void RigidBody::Terminate()
     PhysicsWorld::Get()->Unregister(this);
     SafeDelete(mRigidBody);
     SafeDelete(mMotionState);
+}
+
+void RigidBody::Activate()
+{
+    PhysicsWorld::Get()->Register(this);
+    mRigidBody->activate();
+}
+
+void RigidBody::Deactivate()
+{
+    PhysicsWorld::Get()->Unregister(this);
+}
+
+void RigidBody::SetCollisionFlags(int flags)
+{
+    mRigidBody->setCollisionFlags(flags);
 }
 
 void RigidBody::SetPosition(const Math::Vector3& position)
