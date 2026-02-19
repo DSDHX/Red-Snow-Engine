@@ -121,7 +121,7 @@ void PhysicsWorld::Register(PhysicsObject* physicsObject)
 {
     auto iter = std::find(mPhysicsObjects.begin(), mPhysicsObjects.end(), 
         physicsObject);
-    if (iter != mPhysicsObjects.end())
+    if (iter == mPhysicsObjects.end())
     {
         mPhysicsObjects.push_back(physicsObject);
 #ifdef USE_SOFT_BODY

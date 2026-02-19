@@ -109,6 +109,7 @@ void GameState::Terminate()
     mGroundObject.Terminate();
     mBallRigidBody.Terminate();
     mBallShape.Terminate();
+    mBallObject.Terminate();
 }
 
 void GameState::Update(float deltaTime)
