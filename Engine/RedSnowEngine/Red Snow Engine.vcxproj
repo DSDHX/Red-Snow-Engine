@@ -150,6 +150,9 @@
     <ClCompile Include="Src\RedSnowEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Audio\Audio.vcxproj">
+      <Project>{a9f34d28-2dc5-4cb8-b28f-35003447c973}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Core\Core.vcxproj">
       <Project>{5841b74a-7aaf-4a18-99c0-a9c81741af26}</Project>
     </ProjectReference>

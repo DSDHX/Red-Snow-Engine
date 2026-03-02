@@ -7,6 +7,7 @@ using namespace RedSnowEngine::Core;
 using namespace RedSnowEngine::Graphics;
 using namespace RedSnowEngine::Input;
 using namespace RedSnowEngine::Physics;
+using namespace RedSnowEngine::Audio;
 
 void App::Run(const AppConfig& config)
 {
@@ -28,6 +29,9 @@ void App::Run(const AppConfig& config)
 
     PhysicsWorld::Settings settings;
     PhysicsWorld::StaticInitialize(settings);
+    EventManager::StaticInitialize();
+    AudioSystem::StaticInitialize();
+    SoundEffectManager::StaticInitialize(L"../../Assets/Audio");
 
     ASSERT(mCurrentState != nullptr, "App: need an app state to run");
     mCurrentState->Initialize();
@@ -52,6 +56,8 @@ void App::Run(const AppConfig& config)
             mCurrentState->Initialize();
         }
 
+        AudioSystem::Get()->Update();
+
         float deltaTime = TimeUtil::GetDeltaTime();
 #if defined(_DEBUG)
         if (deltaTime < 0.5f)
@@ -73,6 +79,9 @@ void App::Run(const AppConfig& config)
     LOG("App Quit");
     mCurrentState->Terminate();
 
+    SoundEffectManager::StaticTerminate();
+    AudioSystem::StaticTerminate();
+    EventManager::StaticTerminate();
     PhysicsWorld::StaticTerminate();
     ModelManager::StaticTerminate();
     TextureManager::StaticTerminate();
