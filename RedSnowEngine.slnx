@@ -65,5 +65,6 @@
     <Project Path="VGP334/18_HelloParticleSystem/18_HelloParticleSystem.vcxproj" Id="6ef3a2c7-8b66-45da-ae36-de277e496c79" />
     <Project Path="VGP334/19_HelloEventsAndAudio/19_HelloEventsAndAudio.vcxproj" Id="70d72ca9-3565-420a-8e64-2054989388cd" />
     <Project Path="VGP334/20_HelloProceduralAnimation/20_HelloProceduralAnimation.vcxproj" Id="b791f269-0066-4b1e-9bc1-d4f276d412d8" />
+    <Project Path="VGP334/21_HipHopDance/21_HipHopDance.vcxproj" Id="f84c367c-8790-493f-83ca-056931fdc26a" />
   </Folder>
 </Solution>
