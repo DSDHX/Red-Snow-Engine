@@ -67,4 +67,7 @@
     <Project Path="VGP334/20_HelloProceduralAnimation/20_HelloProceduralAnimation.vcxproj" Id="b791f269-0066-4b1e-9bc1-d4f276d412d8" />
     <Project Path="VGP334/21_HipHopDance/21_HipHopDance.vcxproj" Id="f84c367c-8790-493f-83ca-056931fdc26a" />
   </Folder>
+  <Folder Name="/VGP336/">
+    <Project Path="VGP336/21_HelloMemory/21_HelloMemory.vcxproj" Id="f4bff1b3-dfb0-40a9-8731-0ed4b0969006" />
+  </Folder>
 </Solution>
