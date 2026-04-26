@@ -69,5 +69,6 @@
   </Folder>
   <Folder Name="/VGP336/">
     <Project Path="VGP336/21_HelloMemory/21_HelloMemory.vcxproj" Id="f4bff1b3-dfb0-40a9-8731-0ed4b0969006" />
+    <Project Path="VGP336/22_HelloGameObject/22_HelloGameObject.vcxproj" Id="d5e12af4-10f9-4d72-9a43-33d0b6e4e825" />
   </Folder>
 </Solution>
