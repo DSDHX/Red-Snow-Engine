@@ -18,17 +18,17 @@ namespace RedSnowEngine
         void DestroyGameObject(const GameObjectHandle& handle);
 
         template<class ServiceType>
-        ServiceType& AddService()
+        ServiceType* AddService()
         {
             static_assert(std::is_base_of_v<Service, ServiceType>, "GameWorld: service type must be of type Service");
             ASSERT(!mInitialized, "GameWorld: can't add services after initialized");
 
             auto& newService = mServices.emplace_back(std::make_unique<ServiceType>());
             newService->mWorld = this;
-            return static_cast<ServiceType&>(newService.get());
+            return static_cast<ServiceType*>(newService.get());
         }
         template<class ServiceType>
-        const ServiceType& GetService() const
+        const ServiceType* GetService() const
         {
             for (auto& service : mServices)
             {

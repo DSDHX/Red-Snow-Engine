@@ -41,6 +41,14 @@ void RenderService::Render()
     {
         entry.renderGroup.transform = *entry.transformComponent;
     }
+    mShadowEffect.Begin();
+    for (Entry& entry : mRenderEntries)
+    {
+        if (entry.renderComponent->CanCastShadow())
+        {
+            mShadowEffect.Render(entry.renderGroup);
+        }
+    }
     mShadowEffect.End();
 
     mStandardEffect.Begin();

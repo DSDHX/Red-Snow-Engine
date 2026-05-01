@@ -31,7 +31,7 @@ namespace RedSnowEngine
             static_assert(std::is_base_of_v<Component, ComponentType>, "GameObject: ComponentType must be of type Component");
             ASSERT(!mInitialized, "GameObject: can't add components when initialized");
             ASSERT(!HasA<ComponentType>(), "GameObject: already has component type added");
-            ASSERT(ComponentType::StaticGetTypeId() != static_cast<uint32_t>(ComponentType::Invalid),
+            ASSERT(ComponentType::StaticGetTypeId() != static_cast<uint32_t>(ComponentId::Invalid),
                 "GameObject: component has invalid id");
 
             auto& newComponent = mComponents.emplace_back(std::make_unique<ComponentType>());
