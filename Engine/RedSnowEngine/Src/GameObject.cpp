@@ -5,12 +5,12 @@ using namespace RedSnowEngine;
 
 static uint32_t gUniqueId = 0;
 
-void GameObject::Initalize()
+void GameObject::Initialize()
 {
     ASSERT(!mInitialized, "GameObject: is already initialized");
     for (auto& component : mComponents)
     {
-        component->Intialize();
+        component->Initialize();
     }
 
     mId = gUniqueId++;
@@ -66,4 +66,14 @@ uint32_t GameObject::GetId() const
 const GameObjectHandle& GameObject::GetHandle() const
 {
     return mHandle;
+}
+
+GameWorld& GameObject::GetWorld()
+{
+    return *mWorld;
+}
+
+const GameWorld& GameObject::GetWorld() const
+{
+    return *mWorld;
 }

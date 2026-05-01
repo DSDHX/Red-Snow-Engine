@@ -8,6 +8,9 @@ namespace RedSnowEngine
         Transform,
         Camera,
         FPSCamera,
+        Mesh,
+        Model,
+        Animator,
         Count
     };
 
@@ -15,6 +18,7 @@ namespace RedSnowEngine
     {
         Invalid,
         Camera,
+        Render,
         Count
     };
 }

@@ -17,10 +17,13 @@ namespace RedSnowEngine
         Component& operator=(const Component&) = delete;
         Component& operator=(const Component&&) = delete;
 
-        virtual void Intialize() {}
+        virtual void Initialize() {}
         virtual void Terminate() {}
         virtual void Update(float deltaTime) {}
         virtual void DebugUI() {}
+
+        virtual void Deserialize(const rapidjson::Value& value) {}
+        virtual void Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value originalValue) {}
 
         virtual uint32_t GetTypeId() const = 0;
 

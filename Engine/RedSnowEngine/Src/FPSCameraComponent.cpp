@@ -2,6 +2,7 @@
 #include "FPSCameraComponent.h"
 #include "CameraComponent.h"
 #include "GameObject.h"
+#include "SaveUtil.h"
 
 using namespace RedSnowEngine;
 using namespace RedSnowEngine::Input;
@@ -59,4 +60,11 @@ void FPSCameraComponent::DebugUI()
     ImGui::DragFloat("MoveSpeed", &mMoveSpeed, 0.1f, 0.1f, 100.0f);
     ImGui::DragFloat("ShiftSpeed", &mShiftSpeed, 0.1f, 0.1f, 1000.0f);
     ImGui::DragFloat("TurnSpeed", &mTurnSpeed, 0.001f, 0.01f, 1.0f);
+}
+
+void FPSCameraComponent::Deserialize(const rapidjson::Value& value)
+{
+    SaveUtil::ReadFloat("MoveSpeed", mMoveSpeed, value);
+    SaveUtil::ReadFloat("ShiftSpeed", mShiftSpeed, value);
+    SaveUtil::ReadFloat("TurnSpeed", mTurnSpeed, value);
 }

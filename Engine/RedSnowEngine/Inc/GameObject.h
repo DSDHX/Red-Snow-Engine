@@ -5,12 +5,14 @@
 
 namespace RedSnowEngine
 {
+    class GameWorld;
+
     class GameObject final
     {
     public:
         GameObject() = default;
 
-        void Initalize();
+        void Initialize();
         void Terminate();
         void Update(float deltaTime);
         void DebugUI();
@@ -19,6 +21,9 @@ namespace RedSnowEngine
         const std::string& GetName() const;
         uint32_t GetId() const;
         const GameObjectHandle& GetHandle() const;
+
+        GameWorld& GetWorld();
+        const GameWorld& GetWorld() const;
 
         template<class ComponentType>
         ComponentType* AddComponent()
@@ -73,6 +78,7 @@ namespace RedSnowEngine
         bool mInitialized = false;
         uint32_t mId = 0;
         GameObjectHandle mHandle;
+        GameWorld* mWorld = nullptr;
 
         using Components = std::vector<std::unique_ptr<Component>>;
         Components mComponents;
