@@ -11,6 +11,7 @@ namespace RedSnowEngine
         Mesh,
         Model,
         Animator,
+        RigidBody,
         Count
     };
 
@@ -19,6 +20,7 @@ namespace RedSnowEngine
         Invalid,
         Camera,
         Render,
+        Physics,
         Count
     };
 }

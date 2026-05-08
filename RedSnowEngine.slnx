@@ -21,6 +21,9 @@
   <Folder Name="/Assets/Templates/" />
   <Folder Name="/Assets/Templates/Objects/">
     <File Path="Assets/Templates/Objects/fps_camera.json" />
+    <File Path="Assets/Templates/Objects/ground.json" />
+    <File Path="Assets/Templates/Objects/mesh_obj.json" />
+    <File Path="Assets/Templates/Objects/model_obj.json" />
     <File Path="Assets/Templates/Objects/transform_obj.json" />
   </Folder>
   <Folder Name="/Engine/">

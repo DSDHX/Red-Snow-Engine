@@ -64,7 +64,9 @@ void App::Run(const AppConfig& config)
 #endif
         {
             mCurrentState->Update(deltaTime);
+#ifndef USE_PHYSICS_THREAD
             PhysicsWorld::Get()->Update(deltaTime);
+#endif
         }
 
         GraphicsSystem* gs = GraphicsSystem::Get();
