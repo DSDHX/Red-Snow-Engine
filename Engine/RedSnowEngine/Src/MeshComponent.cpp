@@ -55,7 +55,7 @@ void MeshComponent::Deserialize(const rapidjson::Value& value)
         SaveUtil::ReadColor("Ambient", matData.material.ambient, materialData);
         SaveUtil::ReadColor("Diffuse", matData.material.diffuse, materialData);
         SaveUtil::ReadColor("Specular", matData.material.specular, materialData);
-        SaveUtil::ReadColor("Shininess", matData.material.shininess, materialData);
+        SaveUtil::ReadFloat("Shininess", matData.material.shininess, materialData);
     }
     if (value.HasMember("Textures"))
     {
