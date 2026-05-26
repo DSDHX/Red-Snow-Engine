@@ -15,7 +15,7 @@ namespace RedSnowEngine
         bool CanCastShadow() const;
 
         virtual Graphics::ModelId GetModelId() const { return 0; }
-        virtual const Graphics::Model& GetModel() const;
+        virtual const Graphics::Model& GetModel() const = 0;
 
     private:
         bool mCastShadow = true;

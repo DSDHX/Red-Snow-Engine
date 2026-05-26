@@ -4,6 +4,9 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/Assets/" />
+  <Folder Name="/Assets/Levels/">
+    <File Path="Assets/Levels/level.json" />
+  </Folder>
   <Folder Name="/Assets/Shaders/">
     <File Path="Assets/Shaders/CelShader.fx" />
     <File Path="Assets/Shaders/DoColor.fx" />
@@ -19,12 +22,14 @@
     <File Path="Assets/Shaders/Terrain.fx" />
   </Folder>
   <Folder Name="/Assets/Templates/" />
+  <Folder Name="/Assets/Templates/Components/">
+    <File Path="Assets/Templates/Components/fps_camera.json" />
+    <File Path="Assets/Templates/Components/transform_obj.json" />
+  </Folder>
   <Folder Name="/Assets/Templates/Objects/">
-    <File Path="Assets/Templates/Objects/fps_camera.json" />
     <File Path="Assets/Templates/Objects/ground.json" />
     <File Path="Assets/Templates/Objects/mesh_obj.json" />
     <File Path="Assets/Templates/Objects/model_obj.json" />
-    <File Path="Assets/Templates/Objects/transform_obj.json" />
   </Folder>
   <Folder Name="/Engine/">
     <Project Path="Engine/RedSnowEngine/Red Snow Engine.vcxproj" Id="4f613025-a2f3-4f96-b111-e20bb6efd8db" />
@@ -79,5 +84,6 @@
     <Project Path="VGP336/21_HelloMemory/21_HelloMemory.vcxproj" Id="f4bff1b3-dfb0-40a9-8731-0ed4b0969006" />
     <Project Path="VGP336/22_HelloGameObject/22_HelloGameObject.vcxproj" Id="d5e12af4-10f9-4d72-9a43-33d0b6e4e825" />
     <Project Path="VGP336/23_HelloGameObjectFactory/23_HelloGameObjectFactory.vcxproj" Id="262c159f-2a90-4351-866a-a923d6ed1b4c" />
+    <Project Path="VGP336/24_HelloGameWorld/24_HelloGameWorld.vcxproj" Id="aac0814a-d3f5-4ba8-8b4a-8a1cd57310ea" />
   </Folder>
 </Solution>

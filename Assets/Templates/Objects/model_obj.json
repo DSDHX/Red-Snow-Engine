@@ -9,7 +9,7 @@
       "CashShadow": false,
       "FileName": "../../Assets/Models/Character02/Character02.model",
       "Animations": [
-        "../../Assets/Models/Character02/SambaDancing.anim"
+        "../../Assets/Models/Character02/Animations/WaveHipHopDance.animset"
       ]
     },
     "AnimatorComponent": {

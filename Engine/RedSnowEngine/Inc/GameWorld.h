@@ -17,6 +17,8 @@ namespace RedSnowEngine
         GameObject* CreateGameObject(std::string name, const std::filesystem::path& templatePath = "");
         void DestroyGameObject(const GameObjectHandle& handle);
 
+        void LoadLevel(const std::filesystem::path& levelPath);
+
         template<class ServiceType>
         ServiceType* AddService()
         {

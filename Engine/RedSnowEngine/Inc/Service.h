@@ -24,6 +24,7 @@ namespace RedSnowEngine
         virtual void Update(float deltaTime) {}
         virtual void Render() {}
         virtual void DebugUI() {}
+        virtual void Deserialize(const rapidjson::Value& value) {}
 
         GameWorld& GeWorld() { return *mWorld; }
         const GameWorld& GetWorld() const { return *mWorld; }
