@@ -37,6 +37,7 @@
     <Project Path="External/Bullet/Bullet.vcxproj" Id="516192eb-788a-4fe7-b2b7-2ef9ac036b12" />
     <Project Path="External/DirectXTK/Audio/DirectXTKAudio_Desktop_2022_Win8.vcxproj" Id="4f150a30-cecb-49d1-8283-6a3f57438cf5" />
     <Project Path="External/DirectXTK/DirectXTK_Desktop_2022.vcxproj" Id="e0b52ae7-e160-4d32-bf3f-910b785e5a8e" />
+    <Project Path="External/FW1FontWrapper/FW1FontWrapper.vcxproj" Id="0d034612-14e2-44e7-993a-72344a2ca7bd" />
     <Project Path="External/ImGui/ImGui.vcxproj" Id="52d656a2-a2f4-4c54-a3c7-653427bed1e8" />
   </Folder>
   <Folder Name="/Framework/">

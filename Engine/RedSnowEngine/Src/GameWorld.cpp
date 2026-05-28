@@ -5,6 +5,7 @@
 #include "CameraService.h"
 #include "RenderService.h"
 #include "PhysicsService.h"
+#include "UIRenderService.h"
 
 using namespace RedSnowEngine;
 
@@ -162,6 +163,14 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelPath)
         else if (serviceName == "PhysicsService")
         {
             newService = AddService<PhysicsService>();
+        }
+        else if (serviceName == "UIRenderService")
+        {
+            newService = AddService<UIRenderService>();
+        }
+        else
+        {
+            newService = TryAddService(serviceName, *this);
         }
 
         ASSERT(newService != nullptr, "GameWorld: failed to add service %s", serviceName.c_str());

@@ -23,11 +23,14 @@
 #include "RigidBodyComponent.h"
 #include "SoundBankComponent.h"
 #include "SoundEventComponent.h"
+#include "UIComponent.h"
+#include "UITextComponent.h"
 
 #include "Service.h"
 #include "CameraService.h"
 #include "RenderService.h"
 #include "PhysicsService.h"
+#include "UIRenderService.h"
 
 namespace RedSnowEngine
 {

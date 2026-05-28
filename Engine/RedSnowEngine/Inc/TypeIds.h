@@ -14,6 +14,9 @@ namespace RedSnowEngine
         RigidBody,
         SoundEffect,
         SoundBank,
+        UIText,
+        UISprite,
+        UIButton,
         Count
     };
 
@@ -23,6 +26,7 @@ namespace RedSnowEngine
         Camera,
         Render,
         Physics,
+        UIRender,
         Count
     };
 }
