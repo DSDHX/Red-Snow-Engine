@@ -21,6 +21,8 @@
 #include "ModelComponent.h"
 #include "AnimatorComponent.h"
 #include "RigidBodyComponent.h"
+#include "SoundBankComponent.h"
+#include "SoundEventComponent.h"
 
 #include "Service.h"
 #include "CameraService.h"

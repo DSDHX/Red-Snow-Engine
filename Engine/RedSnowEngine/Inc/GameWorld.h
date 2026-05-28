@@ -5,9 +5,13 @@
 
 namespace RedSnowEngine
 {
+    using CustomService = std::function<Service* (const std::string&, GameWorld&)>;
+
     class GameWorld final
     {
     public:
+        static void SetCustomService(CustomService callback);
+
         void Initialize(uint32_t capacity = 10);
         void Terminate();
         void Update(float deltaTime);

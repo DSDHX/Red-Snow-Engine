@@ -4,9 +4,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/Assets/" />
-  <Folder Name="/Assets/Levels/">
-    <File Path="Assets/Levels/level.json" />
-  </Folder>
   <Folder Name="/Assets/Shaders/">
     <File Path="Assets/Shaders/CelShader.fx" />
     <File Path="Assets/Shaders/DoColor.fx" />
@@ -22,14 +19,16 @@
     <File Path="Assets/Shaders/Terrain.fx" />
   </Folder>
   <Folder Name="/Assets/Templates/" />
-  <Folder Name="/Assets/Templates/Components/">
-    <File Path="Assets/Templates/Components/fps_camera.json" />
-    <File Path="Assets/Templates/Components/transform_obj.json" />
+  <Folder Name="/Assets/Templates/Levels/">
+    <File Path="Assets/Templates/Levels/level.json" />
   </Folder>
   <Folder Name="/Assets/Templates/Objects/">
+    <File Path="Assets/Templates/Objects/custom_obj.json" />
+    <File Path="Assets/Templates/Objects/fps_camera.json" />
     <File Path="Assets/Templates/Objects/ground.json" />
     <File Path="Assets/Templates/Objects/mesh_obj.json" />
     <File Path="Assets/Templates/Objects/model_obj.json" />
+    <File Path="Assets/Templates/Objects/transform_obj.json" />
   </Folder>
   <Folder Name="/Engine/">
     <Project Path="Engine/RedSnowEngine/Red Snow Engine.vcxproj" Id="4f613025-a2f3-4f96-b111-e20bb6efd8db" />

@@ -8,6 +8,16 @@
 
 using namespace RedSnowEngine;
 
+namespace
+{
+    CustomService TryAddService;
+}
+
+void GameWorld::SetCustomService(CustomService callback)
+{
+    TryAddService = callback;
+}
+
 void GameWorld::Initialize(uint32_t capacity)
 {
     ASSERT(!mInitialized, "GameWorld: is already initialized");

@@ -17,10 +17,10 @@
   },
   "GameObjects": {
     "Transform": {
-      "Template": "../../Assets/Templates/Components/transform_obj.json"
+      "Template": "../../Assets/Templates/Objects/transform_obj.json"
     },
     "Camera": {
-      "Template": "../../Assets/Templates/Components/fps_camera.json",
+      "Template": "../../Assets/Templates/Objects/fps_camera.json",
       "Components": {
         "CameraComponent": {
           "Position": [ 0.0, 3.0, -4.0 ],
@@ -57,6 +57,9 @@
           }
         }
       }
+    },
+    "CustomDebugDrawPbj": {
+      "Template": "../../Assets/Templates/Objects/custom_obj.json"
     }
   }
 }

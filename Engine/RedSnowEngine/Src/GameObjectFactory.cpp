@@ -10,11 +10,16 @@
 #include "ModelComponent.h"
 #include "AnimatorComponent.h"
 #include "RigidBodyComponent.h"
+#include "SoundEventComponent.h"
+#include "SoundBankComponent.h"
 
 using namespace RedSnowEngine;
 
 namespace
 {
+    CustomComponent TryMakeComponent;
+    CustomComponent TryGetComponent;
+
     Component* AddComponent(const std::string& componentName, GameObject& gameObject)
     {
         Component* newComponent = nullptr;
@@ -46,45 +51,80 @@ namespace
         {
             newComponent = gameObject.AddComponent<RigidBodyComponent>();
         }
+        else if (componentName == "SoundEventComponent")
+        {
+            newComponent = gameObject.AddComponent<SoundEventComponent>();
+        }
+        else if (componentName == "SoundBankComponent")
+        {
+            newComponent = gameObject.AddComponent<SoundBankComponent>();
+        }
+        else
+        {
+            newComponent = TryMakeComponent(componentName, gameObject);
+        }
+
+        ASSERT(newComponent != nullptr, "GameObjectFactory: component type [%s] not found", componentName.c_str());
+        return newComponent;
+    }
+
+    Component* GetComponent(const std::string& componentName, GameObject& gameObject)
+    {
+        Component* newComponent = nullptr;
+        if (componentName == "TransformComponent")
+        {
+            newComponent = gameObject.GetComponent<TransformComponent>();
+        }
+        else if (componentName == "CameraComponent")
+        {
+            newComponent = gameObject.GetComponent<CameraComponent>();
+        }
+        else if (componentName == "FPSCameraComponent")
+        {
+            newComponent = gameObject.GetComponent<FPSCameraComponent>();
+        }
+        else if (componentName == "MeshComponent")
+        {
+            newComponent = gameObject.GetComponent<MeshComponent>();
+        }
+        else if (componentName == "ModelComponent")
+        {
+            newComponent = gameObject.GetComponent<ModelComponent>();
+        }
+        else if (componentName == "AnimatorComponent")
+        {
+            newComponent = gameObject.GetComponent<AnimatorComponent>();
+        }
+        else if (componentName == "RigidBodyComponent")
+        {
+            newComponent = gameObject.GetComponent<RigidBodyComponent>();
+        }
+        else if (componentName == "SoundEventComponent")
+        {
+            newComponent = gameObject.GetComponent<SoundEventComponent>();
+        }
+        else if (componentName == "SoundBankComponent")
+        {
+            newComponent = gameObject.GetComponent<SoundBankComponent>();
+        }
+        else
+        {
+            newComponent = TryGetComponent(componentName, gameObject);
+        }
 
         ASSERT(newComponent != nullptr, "GameObjectFactory: component type [%s] not found", componentName.c_str());
         return newComponent;
     }
 }
 
-Component* GetComponent(const std::string& componentName, GameObject& gameObject)
+void GameObjectFactory::SetCustomMake(CustomComponent callback)
 {
-    Component* newComponent = nullptr;
-    if (componentName == "TransformComponent")
-    {
-        newComponent = gameObject.GetComponent<TransformComponent>();
-    }
-    else if (componentName == "CameraComponent")
-    {
-        newComponent = gameObject.GetComponent<CameraComponent>();
-    }
-    else if (componentName == "FPSCameraComponent")
-    {
-        newComponent = gameObject.GetComponent<FPSCameraComponent>();
-    }
-    else if (componentName == "MeshComponent")
-    {
-        newComponent = gameObject.GetComponent<MeshComponent>();
-    }
-    else if (componentName == "ModelComponent")
-    {
-        newComponent = gameObject.GetComponent<ModelComponent>();
-    }
-    else if (componentName == "AnimatorComponent")
-    {
-        newComponent = gameObject.GetComponent<AnimatorComponent>();
-    }
-    else if (componentName == "RigidBodyComponent")
-    {
-        newComponent = gameObject.GetComponent<RigidBodyComponent>();
-    }
-    ASSERT(newComponent != nullptr, "GameObjectFactory: component type [%s] not found", componentName.c_str());
-    return newComponent;
+    TryMakeComponent = callback;
+}
+
+void GameObjectFactory::SetCustomGet(CustomComponent callback)
+{
+    TryGetComponent = callback;
 }
 
 void GameObjectFactory::Make(const std::filesystem::path& templatePath, GameObject& gameObject, GameWorld& gameWorld)

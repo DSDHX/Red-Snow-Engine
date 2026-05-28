@@ -12,6 +12,8 @@ namespace RedSnowEngine
         Model,
         Animator,
         RigidBody,
+        SoundEffect,
+        SoundBank,
         Count
     };
 
