@@ -36,9 +36,9 @@ void UISpriteComponent::Render()
 
 void UISpriteComponent::Deserialize(const rapidjson::Value& value)
 {
-    if (value.HasMember("Texture"))
+    if (value.HasMember("FileName"))
     {
-        mTextureFile = value["Texture"].GetString();
+        mTextureFile = value["FileName"].GetString();
     }
     if (value.HasMember("Position"))
     {

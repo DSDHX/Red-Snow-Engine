@@ -9,7 +9,7 @@ using namespace RedSnowEngine::Physics;
 
 Service* MakeCustomService(const std::string& serviceName, GameWorld& gameWorld)
 {
-    if (serviceName == "CustomDebugDrawDisplay")
+    if (serviceName == "CustomDebugDrawService")
     {
         return gameWorld.AddService<CustomDebugDrawService>();
     }
