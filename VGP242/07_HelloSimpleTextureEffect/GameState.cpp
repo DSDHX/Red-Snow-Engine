@@ -30,8 +30,8 @@ void GameState::Initialize()
 void GameState::Terminate()
 {
     mRenderTarget.Terminate();
-    TextureManager::Get()->RelaseTexture(mObject0.textureId);
-    TextureManager::Get()->RelaseTexture(mObject1.textureId);
+    TextureManager::Get()->ReleaseTexture(mObject0.textureId);
+    TextureManager::Get()->ReleaseTexture(mObject1.textureId);
     mObject0.mesh.Terminate();
     mObject1.mesh.Terminate();
     mSimpleTextureEffect.Terminate();

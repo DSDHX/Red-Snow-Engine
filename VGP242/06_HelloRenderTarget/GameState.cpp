@@ -31,7 +31,7 @@ void GameState::Initialize()
 void GameState::Terminate()
 {
     mRenderTarget.Terminate();
-    TextureManager::Get()->RelaseTexture(mTextureId);
+    TextureManager::Get()->ReleaseTexture(mTextureId);
     mObject.Terminate();
     mTransformBuffer.Terminate();
     mSampler.Terminate();

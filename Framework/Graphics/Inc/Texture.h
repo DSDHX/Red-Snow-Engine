@@ -2,13 +2,13 @@
 
 namespace RedSnowEngine::Graphics
 {
-	class Texture
-	{
-	public:
+    class Texture
+    {
+    public:
         static void UnbindPS(uint32_t slot);
 
         Texture() = default;
-		virtual ~Texture();
+        virtual ~Texture();
 
         Texture(const Texture&) = delete;
         Texture& operator=(const Texture&) = delete;
@@ -24,7 +24,13 @@ namespace RedSnowEngine::Graphics
 
         void* GetRawData() const;
 
-	protected:
+        uint32_t GetWidth() const;
+        uint32_t GetHeight() const;
+
+    protected:
         ID3D11ShaderResourceView* mShaderResourceView = nullptr;
-	};
+
+        uint32_t mWidth = 0;
+        uint32_t mHeight = 0;
+    };
 }

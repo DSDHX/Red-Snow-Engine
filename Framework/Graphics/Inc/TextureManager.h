@@ -24,7 +24,7 @@ namespace RedSnowEngine::Graphics
         void SetRootDirectory(const std::filesystem::path& root);
         TextureId LoadTexture(const std::filesystem::path& fileName, bool useRootDir = true);
         const Texture* GetTexture(TextureId id);
-        void RelaseTexture(TextureId id);
+        void ReleaseTexture(TextureId id);
 
         void BindVS(TextureId id, uint32_t slot) const;
         void BindPS(TextureId id, uint32_t slot) const;

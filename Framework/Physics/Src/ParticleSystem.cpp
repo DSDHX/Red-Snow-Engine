@@ -23,7 +23,7 @@ void ParticleSystem::Terminate()
         particle.reset();
     }
     mParticles.clear();
-    TextureManager::Get()->RelaseTexture(mInfo.textureId);
+    TextureManager::Get()->ReleaseTexture(mInfo.textureId);
 }
 
 void ParticleSystem::Update(float deltaTime)

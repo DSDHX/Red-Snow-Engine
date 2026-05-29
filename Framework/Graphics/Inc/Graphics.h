@@ -41,5 +41,7 @@
 #include "TextureManager.h"
 #include "Transform.h"
 #include "UIFont.h"
+#include "UISprite.h"
+#include "UISpriteRender.h"
 #include "VertexShader.h"
 #include "VertexTypes.h"

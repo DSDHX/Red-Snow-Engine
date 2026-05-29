@@ -25,6 +25,7 @@
 #include "SoundEventComponent.h"
 #include "UIComponent.h"
 #include "UITextComponent.h"
+#include "UISpriteComponent.h"
 
 #include "Service.h"
 #include "CameraService.h"

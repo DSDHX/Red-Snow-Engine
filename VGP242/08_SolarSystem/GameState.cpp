@@ -100,18 +100,18 @@ void GameState::Terminate() {
     mPlanetRenderTarget.Terminate();
 
     // Release textures
-    TextureManager::Get()->RelaseTexture(mSkySphere.textureId);
-    TextureManager::Get()->RelaseTexture(mSun.textureId);
+    TextureManager::Get()->ReleaseTexture(mSkySphere.textureId);
+    TextureManager::Get()->ReleaseTexture(mSun.textureId);
 
     // Terminate mesh buffers
     mSkySphere.mesh.Terminate();
     mSun.mesh.Terminate();
     for (auto& planet : mPlanets) {
-        TextureManager::Get()->RelaseTexture(planet.object.textureId);
+        TextureManager::Get()->ReleaseTexture(planet.object.textureId);
         planet.object.mesh.Terminate();
     }
     for (auto& moon : mMoons) {
-        TextureManager::Get()->RelaseTexture(moon->textureId);
+        TextureManager::Get()->ReleaseTexture(moon->textureId);
         moon->mesh.Terminate();
     }
 

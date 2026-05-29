@@ -67,7 +67,7 @@ const Texture* TextureManager::GetTexture(TextureId id)
     return nullptr;
 }
 
-void TextureManager::RelaseTexture(TextureId id)
+void TextureManager::ReleaseTexture(TextureId id)
 {
     auto iter = mInventory.find(id);
     if (iter != mInventory.end())
