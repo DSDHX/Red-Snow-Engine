@@ -23,12 +23,20 @@
     <File Path="Assets/Templates/Levels/level.json" />
   </Folder>
   <Folder Name="/Assets/Templates/Objects/">
+    <File Path="Assets/Templates/Objects/compound_mesh.json" />
     <File Path="Assets/Templates/Objects/custom_obj.json" />
     <File Path="Assets/Templates/Objects/fps_camera.json" />
     <File Path="Assets/Templates/Objects/ground.json" />
     <File Path="Assets/Templates/Objects/mesh_obj.json" />
     <File Path="Assets/Templates/Objects/model_obj.json" />
+    <File Path="Assets/Templates/Objects/player_obj.json" />
+    <File Path="Assets/Templates/Objects/simple_mesh.json" />
     <File Path="Assets/Templates/Objects/transform_obj.json" />
+  </Folder>
+  <Folder Name="/Assets/Templates/UI/">
+    <File Path="Assets/Templates/UI/hud_screen.json" />
+    <File Path="Assets/Templates/UI/ui_button.json" />
+    <File Path="Assets/Templates/UI/ui_sprite.json" />
   </Folder>
   <Folder Name="/Engine/">
     <Project Path="Engine/RedSnowEngine/Red Snow Engine.vcxproj" Id="4f613025-a2f3-4f96-b111-e20bb6efd8db" />

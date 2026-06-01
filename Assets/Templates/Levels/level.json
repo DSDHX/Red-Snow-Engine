@@ -38,7 +38,7 @@
       "Template": "../../Assets/Templates/Objects/mesh_obj.json",
       "Components": {
         "TransformComponent": {
-          "Position": [ -2.0, 1.0, 0.0 ],
+          "Position": [ -5.0, 1.0, 0.0 ],
           "Rotation": [ 0.0, 1.0, 0.0, 1.0 ],
           "Scale": [ 1.0, 1.0, 1.0 ]
         }
@@ -48,7 +48,7 @@
       "Template": "../../Assets/Templates/Objects/model_obj.json",
       "Components": {
         "TransformComponent": {
-          "Position": [ 2.0, 0.0, -1.0 ],
+          "Position": [ 5.0, 0.0, -1.0 ],
           "Rotation": [ 0.0, 0.47, 0.0, 1.0 ],
           "Scale": [ 1.0, 1.0, 1.0 ]
         }
@@ -64,8 +64,11 @@
         }
       }
     },
-    "CustomDebugDrawPbj": {
-      "Template": "../../Assets/Templates/Objects/custom_obj.json"
+    "HUD": {
+      "Template": "../../Assets/Templates/UI/hud_screen.json"
+    },
+    "Player": {
+      "Template": "../../Assets/Templates/Objects/player_obj.json"
     }
   }
 }

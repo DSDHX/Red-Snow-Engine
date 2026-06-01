@@ -11,5 +11,7 @@ namespace RedSnowEngine
 
         void DebugUI() override;
         void Deserialize(const rapidjson::Value& value) override;
+
+        Transform GetWorldTransform() const;
     };
 }

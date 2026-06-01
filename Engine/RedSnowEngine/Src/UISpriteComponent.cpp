@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "GameWorld.h"
 #include "UIRenderService.h"
+#include "UIButtonComponent.h"
 #include "SaveUtil.h"
 
 using namespace RedSnowEngine;
@@ -31,14 +32,35 @@ void UISpriteComponent::Terminate()
 
 void UISpriteComponent::Render()
 {
+    Math::Vector2 worldPosition = GetPosition(false);
+    GameObject* parent = GetOwner().GetParent();
+    while (parent != nullptr)
+    {
+        UISpriteComponent* spriteComponent = parent->GetComponent<UISpriteComponent>();
+        if (spriteComponent != nullptr)
+        {
+            worldPosition += spriteComponent->GetPosition();
+        }
+        else
+        {
+            UIButtonComponent* buttonComponent = parent->GetComponent<UIButtonComponent>();
+            if (buttonComponent != nullptr)
+            {
+                worldPosition += buttonComponent->GetPosition();
+            }
+        }
+        parent = parent->GetParent();
+    }
+
+    mUISprite.SetPosition({ worldPosition.x, worldPosition.y });
     UISpriteRender::Get()->Render(mUISprite);
 }
 
 void UISpriteComponent::Deserialize(const rapidjson::Value& value)
 {
-    if (value.HasMember("FileName"))
+    if (value.HasMember("Texture"))
     {
-        mTextureFile = value["FileName"].GetString();
+        mTextureFile = value["Texture"].GetString();
     }
     if (value.HasMember("Position"))
     {
