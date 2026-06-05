@@ -6,6 +6,7 @@
 #include "RenderService.h"
 #include "PhysicsService.h"
 #include "UIRenderService.h"
+#include "SaveUtil.h"
 
 using namespace RedSnowEngine;
 
@@ -71,6 +72,13 @@ void GameWorld::Update(float deltaTime)
     {
         service->Update(deltaTime);
     }
+    for (Slot& slot : mGameObjectSlots)
+    {
+        if (slot.gameObject != nullptr)
+        {
+            slot.gameObject->LateUpdate(deltaTime);
+        }
+    }
     ProcessDestroyList();
 }
 
@@ -134,11 +142,11 @@ void GameWorld::DestroyGameObject(const GameObjectHandle& handle)
     mToBeDestroyed.push_back(handle.mIndex);
 }
 
-void GameWorld::LoadLevel(const std::filesystem::path& levelPath)
+void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
 {
     FILE* file = nullptr;
-    auto err = fopen_s(&file, levelPath.u8string().c_str(), "r");
-    ASSERT(err == 0 && file != nullptr, "GameWorld: failed to open %s!", levelPath.u8string().c_str());
+    auto err = fopen_s(&file, levelFile.u8string().c_str(), "r");
+    ASSERT(err == 0 && file != nullptr, "GameWorld: failed to open %s!", levelFile.u8string().c_str());
 
     char readBuffer[65536];
     rapidjson::FileReadStream readStream(file, readBuffer, sizeof(readBuffer));
@@ -189,6 +197,39 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelPath)
         GameObjectFactory::OverrideDeserialize(gameObject.value, *go);
         go->Initialize();
     }
+}
+
+void GameWorld::SaveLevel(const std::filesystem::path& levelFile)
+{
+    rapidjson::Document writeDoc;
+    int capacity = mGameObjectSlots.size();
+    SaveUtil::WriteInt("Capacity", capacity, writeDoc, writeDoc);
+
+    rapidjson::Value serviceValue(rapidjson::kObjectType);
+    for (auto& service : mServices)
+    {
+        service->Serialize(writeDoc, serviceValue);
+    }
+    writeDoc.AddMember("Services", serviceValue, writeDoc.GetAllocator());
+
+    rapidjson::Value gameObjectsValue(rapidjson::kObjectType);
+    for (Slot& slot : mGameObjectSlots)
+    {
+        if (slot.gameObject != nullptr)
+        {
+            //
+        }
+    }
+    writeDoc.AddMember("GameObjects", gameObjectsValue, writeDoc.GetAllocator());
+
+    FILE* file = nullptr;
+    auto err = fopen_s(&file, mLevelFileName.u8string().c_str(), "w");
+    ASSERT(err == 0 && file != nullptr, "GameWorld: failed to open file to save %s!", mLevelFileName.u8string().c_str());
+    char buffer[65536];
+    rapidjson::FileWriteStream writeStream(file, buffer, sizeof(buffer));
+    rapidjson::PrettyWriter<rapidjson::FileWriteStream> writer(writeStream);
+    writeDoc.Accept(writer);
+    fclose(file);
 }
 
 bool GameWorld::IsValid(const GameObjectHandle& handle)

@@ -15,6 +15,7 @@ namespace RedSnowEngine
         void Initialize();
         void Terminate();
         void Update(float deltaTime);
+        void LateUpdate(float deltaTime);
         void DebugUI();
 
         void SetName(std::string& name);

@@ -17,6 +17,7 @@
 #include "UISpriteComponent.h"
 #include "UIButtonComponent.h"
 #include "PlayerControllerComponent.h"
+#include "TPSCameraComponent.h"
 
 using namespace RedSnowEngine;
 
@@ -80,6 +81,10 @@ namespace
         {
             newComponent = gameObject.AddComponent<PlayerControllerComponent>();
         }
+        else if (componentName == "TPSCameraComponent")
+        {
+            newComponent = gameObject.AddComponent<TPSCameraComponent>();
+        }
         else
         {
             newComponent = TryMakeComponent(componentName, gameObject);
@@ -91,66 +96,70 @@ namespace
 
     Component* GetComponent(const std::string& componentName, GameObject& gameObject)
     {
-        Component* newComponent = nullptr;
+        Component* component = nullptr;
         if (componentName == "TransformComponent")
         {
-            newComponent = gameObject.GetComponent<TransformComponent>();
+            component = gameObject.GetComponent<TransformComponent>();
         }
         else if (componentName == "CameraComponent")
         {
-            newComponent = gameObject.GetComponent<CameraComponent>();
+            component = gameObject.GetComponent<CameraComponent>();
         }
         else if (componentName == "FPSCameraComponent")
         {
-            newComponent = gameObject.GetComponent<FPSCameraComponent>();
+            component = gameObject.GetComponent<FPSCameraComponent>();
         }
         else if (componentName == "MeshComponent")
         {
-            newComponent = gameObject.GetComponent<MeshComponent>();
+            component = gameObject.GetComponent<MeshComponent>();
         }
         else if (componentName == "ModelComponent")
         {
-            newComponent = gameObject.GetComponent<ModelComponent>();
+            component = gameObject.GetComponent<ModelComponent>();
         }
         else if (componentName == "AnimatorComponent")
         {
-            newComponent = gameObject.GetComponent<AnimatorComponent>();
+            component = gameObject.GetComponent<AnimatorComponent>();
         }
         else if (componentName == "RigidBodyComponent")
         {
-            newComponent = gameObject.GetComponent<RigidBodyComponent>();
+            component = gameObject.GetComponent<RigidBodyComponent>();
         }
         else if (componentName == "SoundEventComponent")
         {
-            newComponent = gameObject.GetComponent<SoundEventComponent>();
+            component = gameObject.GetComponent<SoundEventComponent>();
         }
         else if (componentName == "SoundBankComponent")
         {
-            newComponent = gameObject.GetComponent<SoundBankComponent>();
+            component = gameObject.GetComponent<SoundBankComponent>();
         }
         else if (componentName == "UITextComponent")
         {
-            newComponent = gameObject.GetComponent<UITextComponent>();
+            component = gameObject.GetComponent<UITextComponent>();
         }
         else if (componentName == "UISpriteComponent")
         {
-            newComponent = gameObject.GetComponent<UISpriteComponent>();
+            component = gameObject.GetComponent<UISpriteComponent>();
         }
         else if (componentName == "UIButtonComponent")
         {
-            newComponent = gameObject.GetComponent<UIButtonComponent>();
+            component = gameObject.GetComponent<UIButtonComponent>();
         }
         else if (componentName == "PlayerControllerComponent")
         {
-            newComponent = gameObject.GetComponent<PlayerControllerComponent>();
+            component = gameObject.GetComponent<PlayerControllerComponent>();
+        }
+        else if (componentName == "TPSCameraComponent")
+        {
+            component = gameObject.GetComponent<TPSCameraComponent>();
         }
         else
         {
-            newComponent = TryGetComponent(componentName, gameObject);
+            component = TryGetComponent(componentName, gameObject);
         }
 
-        ASSERT(newComponent != nullptr, "GameObjectFactory: component type [%s] not found", componentName.c_str());
-        return newComponent;
+        ASSERT(component != nullptr, "GameObjectFactory: component type [%s] not found", componentName.c_str());
+        return component;
     }
 }
 

@@ -21,7 +21,8 @@ namespace RedSnowEngine
         GameObject* CreateGameObject(std::string name, const std::filesystem::path& templatePath = "");
         void DestroyGameObject(const GameObjectHandle& handle);
 
-        void LoadLevel(const std::filesystem::path& levelPath);
+        void LoadLevel(const std::filesystem::path& levelFile);
+        void SaveLevel(const std::filesystem::path& levelFile);
 
         template<class ServiceType>
         ServiceType* AddService()
@@ -66,6 +67,7 @@ namespace RedSnowEngine
         std::vector<uint32_t> mFreeSlots;
         std::vector<uint32_t> mToBeDestroyed;
         bool mInitialized = false;
+        std::filesystem::path mLevelFileName;
 
         using Services = std::vector<std::unique_ptr<Service>>;
         Services mServices;
