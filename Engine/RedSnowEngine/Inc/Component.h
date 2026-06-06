@@ -24,7 +24,7 @@ namespace RedSnowEngine
         virtual void DebugUI() {}
 
         virtual void Deserialize(const rapidjson::Value& value) {}
-        virtual void Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value originalValue) {}
+        virtual void Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& originalValue) {}
 
         virtual uint32_t GetTypeId() const = 0;
 

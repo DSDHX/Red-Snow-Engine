@@ -228,6 +228,13 @@ void UIButtonComponent::Deserialize(const rapidjson::Value& value)
     }
 }
 
+void UIButtonComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value,
+    const rapidjson::Value& originalValue)
+{
+    rapidjson::Value componentValue(rapidjson::kObjectType);
+    value.AddMember("UIButtonComponent", componentValue, doc.GetAllocator());
+}
+
 Math::Vector2 UIButtonComponent::GetPosition(bool includeOrigin)
 {
     float x = 0.0f;

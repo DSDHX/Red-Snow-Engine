@@ -38,3 +38,10 @@ void TPSCameraComponent::Deserialize(const rapidjson::Value& value)
     SaveUtil::ReadVector3("Offset", mOffset, value);
     SaveUtil::ReadFloat("Smoothing", mSmoothingValue, value);
 }
+
+void TPSCameraComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value,
+    const rapidjson::Value& originalValue)
+{
+    rapidjson::Value componentValue(rapidjson::kObjectType);
+    value.AddMember("TPSCameraComponent", componentValue, doc.GetAllocator());
+}

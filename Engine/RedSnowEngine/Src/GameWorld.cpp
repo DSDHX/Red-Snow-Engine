@@ -103,6 +103,11 @@ void GameWorld::DebugUI()
     {
         service->DebugUI();
     }
+
+    if (ImGui::Button("Save"))
+    {
+        SaveLevel(mLevelFileName);
+    }
 }
 
 GameObject* GameWorld::CreateGameObject(std::string name, const std::filesystem::path& templatePath)
@@ -125,6 +130,7 @@ GameObject* GameWorld::CreateGameObject(std::string name, const std::filesystem:
     slot.gameObject->mWorld = this;
     if (!templatePath.empty())
     {
+        slot.gameObject->mTemplateFileName = templatePath;
         GameObjectFactory::Make(templatePath, *slot.gameObject, *this);
     }
     return slot.gameObject.get();
@@ -144,6 +150,8 @@ void GameWorld::DestroyGameObject(const GameObjectHandle& handle)
 
 void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
 {
+    mLevelFileName = levelFile;
+
     FILE* file = nullptr;
     auto err = fopen_s(&file, levelFile.u8string().c_str(), "r");
     ASSERT(err == 0 && file != nullptr, "GameWorld: failed to open %s!", levelFile.u8string().c_str());
@@ -201,7 +209,7 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
 
 void GameWorld::SaveLevel(const std::filesystem::path& levelFile)
 {
-    rapidjson::Document writeDoc;
+    rapidjson::Document writeDoc(rapidjson::kObjectType);
     int capacity = mGameObjectSlots.size();
     SaveUtil::WriteInt("Capacity", capacity, writeDoc, writeDoc);
 
@@ -212,12 +220,32 @@ void GameWorld::SaveLevel(const std::filesystem::path& levelFile)
     }
     writeDoc.AddMember("Services", serviceValue, writeDoc.GetAllocator());
 
+    char buffer[65536];
     rapidjson::Value gameObjectsValue(rapidjson::kObjectType);
     for (Slot& slot : mGameObjectSlots)
     {
         if (slot.gameObject != nullptr)
         {
-            //
+            rapidjson::Document originalDoc(rapidjson::kObjectType);
+            if (!slot.gameObject->mTemplateFileName.empty())
+            {
+                FILE* file = nullptr;
+                auto err = fopen_s(&file, slot.gameObject->mTemplateFileName.u8string().c_str(), "r");
+                ASSERT(err == 0 && file != nullptr, "GameWorld: gameobject template was not found");
+                rapidjson::FileReadStream readStream(file, buffer, sizeof(buffer));
+                fclose(file);
+
+                originalDoc.ParseStream(readStream);
+            }
+
+            rapidjson::Document gameObjectDoc(rapidjson::kObjectType);
+            rapidjson::GenericStringRef<char> goTemplate(slot.gameObject->mTemplateFileName.u8string().c_str());
+            gameObjectDoc.AddMember("Template", goTemplate, writeDoc.GetAllocator());
+
+            GameObjectFactory::SerializeGameObject(gameObjectDoc, originalDoc, *slot.gameObject);
+
+            rapidjson::GenericStringRef<char> goNameKey(slot.gameObject->mName.c_str());
+            gameObjectsValue.AddMember(goNameKey, gameObjectDoc, writeDoc.GetAllocator());
         }
     }
     writeDoc.AddMember("GameObjects", gameObjectsValue, writeDoc.GetAllocator());
@@ -225,7 +253,7 @@ void GameWorld::SaveLevel(const std::filesystem::path& levelFile)
     FILE* file = nullptr;
     auto err = fopen_s(&file, mLevelFileName.u8string().c_str(), "w");
     ASSERT(err == 0 && file != nullptr, "GameWorld: failed to open file to save %s!", mLevelFileName.u8string().c_str());
-    char buffer[65536];
+
     rapidjson::FileWriteStream writeStream(file, buffer, sizeof(buffer));
     rapidjson::PrettyWriter<rapidjson::FileWriteStream> writer(writeStream);
     writeDoc.Accept(writer);

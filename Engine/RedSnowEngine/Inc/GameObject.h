@@ -89,6 +89,7 @@ namespace RedSnowEngine
         uint32_t mId = 0;
         GameObjectHandle mHandle;
         GameWorld* mWorld = nullptr;
+        std::filesystem::path mTemplateFileName = L"";
 
         using Components = std::vector<std::unique_ptr<Component>>;
         Components mComponents;

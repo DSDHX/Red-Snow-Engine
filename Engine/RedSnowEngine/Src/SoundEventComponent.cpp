@@ -38,6 +38,13 @@ void SoundEventComponent::Deserialize(const rapidjson::Value& value)
     SaveUtil::ReadBool("Looping", mLooping, value);
 }
 
+void SoundEventComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value,
+    const rapidjson::Value& originalValue)
+{
+    rapidjson::Value componentValue(rapidjson::kObjectType);
+    value.AddMember("SoundEventComponent", componentValue, doc.GetAllocator());
+}
+
 void SoundEventComponent::Play()
 {
     SoundEffectManager::Get()->Play(mSoundId, mLooping);

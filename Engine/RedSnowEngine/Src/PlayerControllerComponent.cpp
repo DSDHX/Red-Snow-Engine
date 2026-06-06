@@ -100,3 +100,10 @@ void PlayerControllerComponent::Deserialize(const rapidjson::Value& value)
     SaveUtil::ReadFloat("TurnSpeed", mTurnSpeed, value);
     SaveUtil::ReadFloat("JumpSpeed", mJumpSpeed, value);
 }
+
+void PlayerControllerComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value,
+    const rapidjson::Value& originalValue)
+{
+    rapidjson::Value componentValue(rapidjson::kObjectType);
+    value.AddMember("PlayerControllerComponent", componentValue, doc.GetAllocator());
+}
