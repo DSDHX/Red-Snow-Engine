@@ -1,0 +1,61 @@
+{
+  "Components": {
+    "TransformComponent": {
+      "Position": [ 0.0, 1.0, 0.0 ],
+      "Rotation": [ 0.0, 0.0, 0.0, 1.0 ],
+      "Scale": [ 1.0, 1.0, 1.0 ]
+    },
+    "MeshComponent": {
+      "CastShaow": false,
+      "Shape": {
+        "Type": "Sphere",
+        "Slices": 60,
+        "Rings": 60,
+        "Radius": 1.0
+      },
+      "Material": {
+        "Emissive": [ 0.0, 0.0, 0.0, 1.0 ],
+        "Ambient": [ 0.3, 0.3, 0.3, 1.0 ],
+        "Diffuse": [ 0.8, 0.8, 0.8, 1.0 ],
+        "Specular": [ 1.0, 1.0, 1.0, 1.0 ],
+        "Shininess": 10.0
+      },
+      "Textures": {
+        "DiffuseMap": "../../Assets/Textures/Images/mario.png"
+      }
+    },
+    "RigidBodyComponent": {
+      "Mass": 2.0,
+      "ColliderData": {
+        "Shape": "Sphere",
+        "Radius": 1.0
+      }
+    },
+    "PlayerControllerComponent": {
+      "ShiftSpeed": 10.0,
+      "MoveSpeed": 1.0,
+      "TurnSpeed": 0.1,
+      "JumpSpeed": 10.0
+    },
+    "TimeRewindComponent": {
+      "RewindKey": "R",
+      "RecordDuration": 3.0,
+      "RewindSpeed": 2.5,
+      "RecordInterval": 0.02,
+      "RestoreVelocity": true,
+      "DisableControlDuringRewind": true,
+      "MaxEnergy": 100.0,
+      "EnergyDrainPerSecond": 40.0,
+      "EnergyRecoverPerSecond": 20.0,
+      "DebugDrawPath": true,
+      "DebugColor": [ 0.2, 0.8, 1.0, 1.0 ]
+    },
+    "TPSCameraComponent": {
+      "Offset": [ 1.0, 1.0, -2.3 ],
+      "Smoothing": 3.0
+    },
+    "CameraComponent": {
+
+    }
+  }
+}
