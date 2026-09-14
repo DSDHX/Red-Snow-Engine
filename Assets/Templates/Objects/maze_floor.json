@@ -1,0 +1,13 @@
+{
+  "Components": {
+    "TransformComponent": {"Position": [0.0, -0.2, 0.0], "Scale": [22.0, 0.4, 22.0]},
+    "MeshComponent": {
+      "Shape": {"Type": "Cube", "Size": 1.0},
+      "Material": {
+        "Ambient": [0.30, 0.36, 0.42, 1.0], "Diffuse": [0.30, 0.36, 0.42, 1.0],
+        "Specular": [0.0, 0.0, 0.0, 1.0], "Shininess": 1.0
+      }
+    },
+    "RigidBodyComponent": {"Mass": 0.0, "ColliderData": {"Shape": "Box", "HalfExtents": [11.0, 0.2, 11.0]}}
+  }
+}

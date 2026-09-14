@@ -1,0 +1,18 @@
+{
+  "Capacity": 160,
+  "Services": {
+    "CameraService": {},
+    "RenderService": {
+      "Direction": [0.4, -1.0, 0.4],
+      "Ambient": [0.65, 0.65, 0.65, 1.0],
+      "Diffuse": [0.65, 0.65, 0.65, 1.0],
+      "Specular": [0.2, 0.2, 0.2, 1.0],
+      "ShadowSize": 32.0
+    },
+    "PhysicsService": {"Gravity": [0.0, -9.81, 0.0], "SimSteps": 4, "FixedTimeStep": 0.016666667}
+  },
+  "GameObjects": {
+    "MazeCamera": {"Template": "../../Assets/Templates/Objects/maze_camera.json"},
+    "MazeFloor": {"Template": "../../Assets/Templates/Objects/maze_floor.json"}
+  }
+}

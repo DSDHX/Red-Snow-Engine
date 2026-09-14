@@ -1,0 +1,5 @@
+{
+  "Components": {
+    "CameraComponent": {"Position": [0.0, 27.0, -15.0], "LookAt": [0.0, 0.0, 1.5]}
+  }
+}

@@ -62,7 +62,7 @@ void RigidBody::SetVelocity(const Math::Vector3& velocity)
     mRigidBody->setLinearVelocity(TobtVector3(velocity));
 }
 
-const Math::Vector3& RigidBody::GetVelocity() const
+Math::Vector3 RigidBody::GetVelocity() const
 {
     return ToVector3(mRigidBody->getLinearVelocity());
 }

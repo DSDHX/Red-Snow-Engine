@@ -1,0 +1,13 @@
+{
+  "Components": {
+    "TransformComponent": {"Rotation": [0.0, 0.0, 0.0, 1.0]},
+    "MeshComponent": {
+      "Shape": {"Type": "Sphere", "Slices": 48, "Rings": 32, "Radius": 0.45},
+      "Material": {
+        "Ambient": [1.0, 1.0, 1.0, 1.0], "Diffuse": [1.0, 1.0, 1.0, 1.0],
+        "Specular": [0.12, 0.12, 0.12, 1.0], "Shininess": 16.0
+      },
+      "Textures": {"DiffuseMap": "../../Assets/Textures/Images/mario.png"}
+    }
+  }
+}
